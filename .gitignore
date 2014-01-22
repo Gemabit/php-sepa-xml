@@ -1,0 +1,9 @@
+
+.idea/*
+.project
+.settings/*
+*~
+
+*.lock
+
+vendor/*

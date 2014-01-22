@@ -1,0 +1,23 @@
+{
+    "name": "Gemabit/php-sepa-xml",
+    "description": "Extension for the Digitick (Bolovsky mod) Library, allowing parse of the return files and creation of direct debit reversion",
+    "minimum-stability": "stable",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "André Filipe",
+            "email": "andre.r.flip@gmail.com"
+        },
+        {
+            "name": "Luis Soares",
+            "email": "luis.xsoares@gmail.com"
+        },
+        {
+            "name": "Ricardo Lopes",
+            "email": "doutrust@gmail.com"
+        }
+    ],
+    "require": {
+        "bolovsky/sepa-xml": "dev-master"
+    }
+}
