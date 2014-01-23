@@ -23,7 +23,7 @@
 namespace Gemabit\Sepa\ReturnFile;
 
 
-class BaseReturnFile implements ReturnFileInterface
+abstract class BaseReturnFile implements ReturnFileInterface
 {
 
 } 

@@ -22,9 +22,6 @@
 
 namespace Gemabit\Sepa;
 
-use Digitick\Sepa\DomBuilder\DomBuilderInterface;
-use Digitick\Sepa\Util\StringHelper;
-
 class GroupHeader extends Digitick\Sepa\GroupHeader
 {
 

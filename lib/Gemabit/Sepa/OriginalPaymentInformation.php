@@ -23,6 +23,8 @@
 namespace Gemabit\Sepa;
 
 
+use Gemabit\Sepa\TransactionInformation\TransactionInformationInterface;
+
 class OriginalPaymentInformation
 {
 
@@ -51,9 +53,30 @@ class OriginalPaymentInformation
      */
     protected $statusReasonInformationProprietary;
 
+    /**
+     * @var array List of transactions
+     */
+    protected $transactions;
+
     public function __construct()
     {
 
+    }
+
+    /**
+     * @param TransactionInformationInterface $transaction
+     */
+    public function addTransaction(TransactionInformationInterface $transaction)
+    {
+        $this->transactions[] = $transaction;
+    }
+
+    /**
+     * @return array Transaction Informations for this payment
+     */
+    public function getTransactions()
+    {
+        return $this->transactions;
     }
 
     /**
