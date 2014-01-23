@@ -20,10 +20,20 @@
  * limitations under the License.
  */
 
-namespace Gemabit\Sepa\DomParser;
+namespace Gemabit\Sepa;
 
+use Digitick\Sepa\DomBuilder\DomBuilderInterface;
+use Digitick\Sepa\Util\StringHelper;
 
-class DomParserFactory
+class GroupHeader extends Digitick\Sepa\GroupHeader
 {
 
-} 
+    /**
+     * @return \DateTime
+     */
+    public function setCreationDateTime(\DateTime $creationDateTime)
+    {
+        $this->creationDateTime = $creationDateTime;
+    }
+
+}
