@@ -33,7 +33,11 @@ use Gemabit\Sepa\GroupHeader;
  */
 abstract class BaseDomParser implements DomParserInterface
 {
-
+	/**
+     * Document holder
+     *
+     * @var DOMDocument
+     */    
     protected $doc;
 
     /**
