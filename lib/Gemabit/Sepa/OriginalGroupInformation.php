@@ -9,6 +9,7 @@
 namespace Gemabit\Sepa;
 
 
-class OriginalGroupInformation {
+class OriginalGroupInformation
+{
 
 } 
