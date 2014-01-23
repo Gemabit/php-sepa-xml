@@ -29,14 +29,9 @@ class OriginalPaymentInformation
 {
 
     /**
-     * @var string Unambiguously identifies the original message
+     * @var string
      */
-    protected $originalMessageIdentification;
-
-    /**
-     * @var string Identifies the original type of file
-     */
-    protected $originalMessageNameIdentification;
+    protected $OriginalPaymentInformationIdentification;
 
     /**
      * @var int Number of transactions of the original document
@@ -80,51 +75,19 @@ class OriginalPaymentInformation
     }
 
     /**
-     * @param string $originalControlsum
+     * @param string $originalPaymentInformationIdentification
      */
-    public function setOriginalControlsum($originalControlsum)
+    public function setOriginalPaymentInformationIdentification($originalPaymentInformationIdentification)
     {
-        $this->originalControlsum = $originalControlsum;
+        $this->originalPaymentInformationIdentification = $originalPaymentInformationIdentification;
     }
 
     /**
      * @return string
      */
-    public function getOriginalControlsum()
+    public function getOriginalPaymentInformationIdentification()
     {
-        return $this->originalControlsum;
-    }
-
-    /**
-     * @param string $originalMessageIdentification
-     */
-    public function setOriginalMessageIdentification($originalMessageIdentification)
-    {
-        $this->originalMessageIdentification = $originalMessageIdentification;
-    }
-
-    /**
-     * @return string
-     */
-    public function getOriginalMessageIdentification()
-    {
-        return $this->originalMessageIdentification;
-    }
-
-    /**
-     * @param string $originalMessageNameIdentification
-     */
-    public function setOriginalMessageNameIdentification($originalMessageNameIdentification)
-    {
-        $this->originalMessageNameIdentification = $originalMessageNameIdentification;
-    }
-
-    /**
-     * @return string
-     */
-    public function getOriginalMessageNameIdentification()
-    {
-        return $this->originalMessageNameIdentification;
+        return $this->OriginalPaymentInformationIdentification;
     }
 
     /**
@@ -141,6 +104,22 @@ class OriginalPaymentInformation
     public function getOriginalNumberOfTransactions()
     {
         return $this->originalNumberOfTransactions;
+    }
+
+    /**
+     * @param string $originalControlsum
+     */
+    public function setOriginalControlsum($originalControlsum)
+    {
+        $this->originalControlsum = $originalControlsum;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOriginalControlsum()
+    {
+        return $this->originalControlsum;
     }
 
     /**

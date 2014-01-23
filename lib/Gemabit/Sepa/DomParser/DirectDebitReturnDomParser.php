@@ -24,7 +24,7 @@ namespace Gemabit\Sepa\DomParser;
 
 use Gemabit\Sepa\OriginalGroupInformation;
 use Gemabit\Sepa\OriginalPaymentInformation;
-use Gemabit\Sepa\TransactionInformation;
+//use Gemabit\Sepa\TransactionInformation;
 
 /**
  * Used to parse the Dom-structure for the Direct Debit Return File
@@ -54,6 +54,14 @@ class DirectDebitReturnDomParser extends BaseDomParser
      */
     protected function fillOriginalGroupInformation(\DOMElement $DOMOriginalGroupInformation)
     {
+    	$messageIdentification = '';
+    	$initiatingPartyName = '';
+
+    	$this->originalGroupInformation = new OriginalGroupInformation($messageIdentification, $initiatingPartyName);
+    	$this->originalGroupInformation->setCreationDate(\DateTime::createFromFormat('j-M-Y', '15-Feb-2009'));
+    	$this->originalGroupInformation->setNumberOfTransactions(3);
+    	$this->originalGroupInformation->setControlSumCents(450000.81);
+    	$this->originalGroupInformation->setInitiatingPartyId('');
     }
 
     /**
@@ -61,6 +69,11 @@ class DirectDebitReturnDomParser extends BaseDomParser
      */
     protected function fillOriginalPaymentInformation(\DOMElement $DOMOriginalPaymentInformation)
     {
+    	$this->originalPaymentInformation = new OriginalPaymentInformation();
+    	
+    	$this->originalPaymentInformation->setOriginalNumberOfTransactions(3);
+    	$this->originalPaymentInformation->setControlSumCents(450000.81);
+    	$this->originalPaymentInformation->setInitiatingPartyId('');
     }
 
     /**
