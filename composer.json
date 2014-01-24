@@ -19,5 +19,10 @@
     ],
     "require": {
         "bolovsky/sepa-xml": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "Gemabit\\Sepa\\": "lib/"
+        }
     }
 }
