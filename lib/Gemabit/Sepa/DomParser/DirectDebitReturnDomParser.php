@@ -37,11 +37,22 @@ use Gemabit\Sepa\TransactionInformation\PaymentTypeInformation\DirectDebitPaymen
  */
 class DirectDebitReturnDomParser extends BaseDomParser
 {
+    /**
+     * @var OriginalGroupInformation
+     */
 	protected $originalGroupInformation;
 
+    /**
+     * @var OriginalPaymentInformation
+     */
 	protected $originalPaymentInformation;
 
-	function __construct($filepath) {
+    /**
+     * Parses Pain.002.001.03 format files
+     * 
+     * @param string $filepath
+     */
+	public function __construct($filepath) {
 		parent::__construct($filepath);
 
         $originalGroupInformationElement = $this->doc->getElementsByTagName('OrgnlGrpInfAndSts')->item(0);
@@ -61,10 +72,10 @@ class DirectDebitReturnDomParser extends BaseDomParser
         $originalNumberOfTransactions          = $this->getValue($DOMOriginalGroupInformation, 'OrgnlNbOfTxs');
         $originalControlSum                    = $this->getValue($DOMOriginalGroupInformation, 'OrgnlCtrlSum');
         $statusReasonInformationProprietary    = $this->getValue($DOMOriginalGroupInformation, 'StsRsnInf.Rsn.Prtry');
-        //@todo Map the following fileds
-        $detailedControlSum                    = '';
-        $detailedNumberOfTransactionsPerStatus = '';
-        $detailedStatus                        = '';
+        
+        $detailedNumberOfTransactionsPerStatus = $this->getValue($DOMOriginalGroupInformation, 'NbOfTxsPerSts.DtldNbOfTxs');
+        $detailedStatus                        = $this->getValue($DOMOriginalGroupInformation, 'NbOfTxsPerSts.DtldSts');
+        $detailedControlSum                    = $this->getValue($DOMOriginalGroupInformation, 'NbOfTxsPerSts.DtldCtrlSum');
 
     	$this->originalGroupInformation = new OriginalGroupInformation();
 
@@ -73,9 +84,9 @@ class DirectDebitReturnDomParser extends BaseDomParser
         $this->originalGroupInformation->setOriginalNumberOfTransactions($originalNumberOfTransactions);
         $this->originalGroupInformation->setOriginalControlSum($originalControlSum);
         $this->originalGroupInformation->setStatusReasonInformationProprietary($statusReasonInformationProprietary);
-        $this->originalGroupInformation->setDetailedControlSum($detailedControlSum);
         $this->originalGroupInformation->setDetailedNumberOfTransactionsPerStatus($detailedNumberOfTransactionsPerStatus);
         $this->originalGroupInformation->setDetailedStatus($detailedStatus);
+        $this->originalGroupInformation->setDetailedControlSum($detailedControlSum);
     }
 
     /**
