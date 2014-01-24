@@ -35,15 +35,7 @@ use Digitick\Sepa\TransferInformation\TransferInformationInterface;
  * @subpackage Gemabit\Sepa\DomParser
  */
 interface DomParserInterface
-
-    /**
-     * Parse the root of the document
-     *
-     * @param ReturnFileInterface $returnFile
-     * @return mixed
-     */
-    public function visitTransferFile(ReturnFileInterface $returnFile);
-
+{
     /**
      * Returns the GroupHeader Information of the document
      *
@@ -52,17 +44,17 @@ interface DomParserInterface
     public function getGroupHeader();
 
     /**
-     * Returns the PaymentInformation of the Transactions
+     * Returns the Original Group Information
      *
-     * @return PaymentInformation
+     * @return OriginalGroupInformation
      */
-    public function getPaymentInformation();
+    public function getOriginalGroupInformation();
 
     /**
-     * Returns the Transactions
+     * Returns the Original Payment Information
      *
-     * @return TransferInformationInterface
+     * @return OriginalPaymentInformation
      */
-    public function getTransferInformation();
+    public function getOriginalPaymentInformation();
 
 } 

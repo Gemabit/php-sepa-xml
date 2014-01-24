@@ -22,7 +22,7 @@
 
 namespace Gemabit\Sepa;
 
-class GroupHeader extends Digitick\Sepa\GroupHeader
+class GroupHeader extends \Digitick\Sepa\GroupHeader
 {
 
     /**
