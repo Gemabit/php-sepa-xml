@@ -22,7 +22,6 @@
 
 namespace Gemabit\Sepa;
 
-
 use Gemabit\Sepa\TransactionInformation\TransactionInformationInterface;
 
 class OriginalPaymentInformation
@@ -52,6 +51,27 @@ class OriginalPaymentInformation
      * @var array List of transactions
      */
     protected $transactions;
+
+    /**
+     * @var string message addition information ([a-zA-Z0-9]){1,105}
+     * @note portuguese system supports only one occurrence
+     */
+    protected $additionalInformation;
+
+    /**
+     * @var string transaction amount for the respective message ([a-zA-Z0-9]){1,15}
+     */
+    protected $detailedNumberOfTransactionsPerStatus;
+
+    /**
+     * @var string common status to all the reported messages ([a-zA-Z0-9]){4}
+     */
+    protected $detailedStatus;
+
+    /**
+     * @var string total amount for the reported transactions ([0-9]){1,15}(\,|\.)?([0-9]){0,2}
+     */
+    protected $detailedControlSum;
 
     public function __construct()
     {

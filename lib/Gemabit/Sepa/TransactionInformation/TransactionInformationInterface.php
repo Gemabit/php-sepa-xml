@@ -9,7 +9,11 @@
 namespace Gemabit\Sepa\TransactionInformation;
 
 
+use Gemabit\Sepa\TransactionInformation\PaymentTypeInformation\BasePaymentTypeInformation;
+
 interface TransactionInformationInterface
 {
+    public function getPaymentTypeInformation();
 
+    public function setPaymentTypeInformation(BasePaymentTypeInformation $paymentTypeInformation);
 } 
