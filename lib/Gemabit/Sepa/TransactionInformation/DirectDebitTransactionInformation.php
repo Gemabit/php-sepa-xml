@@ -46,7 +46,7 @@ class DirectDebitTransactionInformation extends BaseTransactionInformation
     /**
      * @var
      */
-    protected $financialInstitutionBIC;
+    protected $debtorBIC;
 
     /**
      * @var
@@ -158,19 +158,19 @@ class DirectDebitTransactionInformation extends BaseTransactionInformation
     }
 
     /**
-     * @param mixed $financialInstitutionBIC
+     * @param mixed $debtorBIC
      */
-    public function setFinancialInstitutionBIC($financialInstitutionBIC)
+    public function setDebtorBIC($debtorBIC)
     {
-        $this->financialInstitutionBIC = $financialInstitutionBIC;
+        $this->debtorBIC = $debtorBIC;
     }
 
     /**
      * @return mixed
      */
-    public function getFinancialInstitutionBIC()
+    public function getDebtorBIC()
     {
-        return $this->financialInstitutionBIC;
+        return $this->debtorBIC;
     }
 
     /**

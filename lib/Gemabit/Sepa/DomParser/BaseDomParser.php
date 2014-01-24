@@ -57,28 +57,26 @@ abstract class BaseDomParser implements DomParserInterface
     }
 
     /**
-     * Returns the node value if the element has a one, if it's a list, returns the node value of the first item
-     * @param mixed $var
+     * Returns the node value of and element, regarding his path
+     * @param \DOMElement $el
+     * @param string $path
      * @return string|null
      */
-    protected function getNodeValue($var)
+    protected function getValue(\DOMElement $el, $path)
     {
-        if (!$var) {
-            return null;
+        $segments = explode('.', $path);
+
+        foreach ($segments as $tag) {
+            $list = $el->getElementsByTagName($tag);
+            if (is_null($list)) {
+                return null;
+            }
+            if (is_null($el = $list->item(0))) {
+                return null;
+            }
         }
 
-        switch (get_class($var)) {
-            case 'DOMNodeList':
-                if ($var->item(0)) {
-                    return $var->item(0)->nodeValue;
-                }
-                break;
-            case 'DOMElement':
-                return $var->nodeValue;
-                break;
-        }
-
-        return null;
+        return $el->nodeValue;
     }
 
     /**
@@ -86,8 +84,8 @@ abstract class BaseDomParser implements DomParserInterface
      */
     protected function fillGroupHeader(\DOMElement $DOMGroupHeader)
     {
-        $messageIdentification = $this->getNodeValue($DOMGroupHeader->getElementsByTagName('MsgId'));
-        $creationDate = $this->getNodeValue($DOMGroupHeader->getElementsByTagName('CreDtTm'));
+        $messageIdentification = $this->getValue($DOMGroupHeader, 'MsgId');
+        $creationDate          = $this->getValue($DOMGroupHeader, 'CreDtTm');
         //@todo find a better solution
         $creationDateTime = \DateTime::createFromFormat('Y-m-j H-i-s', date('Y-m-j H-i-s', strtotime($creationDate)));
         //@todo Map this fields

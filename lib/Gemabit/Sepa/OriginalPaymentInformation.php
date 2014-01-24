@@ -50,7 +50,7 @@ class OriginalPaymentInformation
     /**
      * @var array List of transactions
      */
-    protected $transactions;
+    protected $transactions = array();
 
     /**
      * @var string message addition information ([a-zA-Z0-9]){1,105}

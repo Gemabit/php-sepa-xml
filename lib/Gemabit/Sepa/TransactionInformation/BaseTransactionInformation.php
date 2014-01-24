@@ -54,7 +54,7 @@ abstract class BaseTransactionInformation implements TransactionInformationInter
     /**
      * @var
      */
-    protected $unstructuredRemittanceInformation;
+    protected $remittanceInformationUnstructured;
 
     /**
      * @var
@@ -389,19 +389,19 @@ abstract class BaseTransactionInformation implements TransactionInformationInter
     }
 
     /**
-     * @param mixed $unstructuredRemittanceInformation
+     * @param mixed $remittanceInformationUnstructured
      */
-    public function setUnstructuredRemittanceInformation($unstructuredRemittanceInformation)
+    public function setRemittanceInformationUnstructured($remittanceInformationUnstructured)
     {
-        $this->unstructuredRemittanceInformation = $unstructuredRemittanceInformation;
+        $this->remittanceInformationUnstructured = $remittanceInformationUnstructured;
     }
 
     /**
      * @return mixed
      */
-    public function getUnstructuredRemittanceInformation()
+    public function getRemittanceInformationUnstructured()
     {
-        return $this->unstructuredRemittanceInformation;
+        return $this->remittanceInformationUnstructured;
     }
 
 
