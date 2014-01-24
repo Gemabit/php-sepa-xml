@@ -51,7 +51,34 @@ abstract class BaseDomParser implements DomParserInterface
         $this->doc = new \DOMDocument();
         $this->doc->load($filepath);
 
-        $this->fillGroupHeader($this->doc->getElementsByTagName('GrpHdr'));
+        $groupHeaderElement = $this->doc->getElementsByTagName('GrpHdr')->item(0);
+
+        $this->fillGroupHeader($groupHeaderElement);
+    }
+
+    /**
+     * Returns the node value if the element has a one, if it's a list, returns the node value of the first item
+     * @param mixed $var
+     * @return string|null
+     */
+    protected function getNodeValue($var)
+    {
+        if (!$var) {
+            return null;
+        }
+
+        switch (get_class($var)) {
+            case 'DOMNodeList':
+                if ($var->item(0)) {
+                    return $var->item(0)->nodeValue;
+                }
+                break;
+            case 'DOMElement':
+                return $var->nodeValue;
+                break;
+        }
+
+        return null;
     }
 
     /**
@@ -59,14 +86,21 @@ abstract class BaseDomParser implements DomParserInterface
      */
     protected function fillGroupHeader(\DOMElement $DOMGroupHeader)
     {
-    	$messageIdentification = '';
-    	$initiatingPartyName = '';
+        $messageIdentification = $this->getNodeValue($DOMGroupHeader->getElementsByTagName('MsgId'));
+        $creationDate = $this->getNodeValue($DOMGroupHeader->getElementsByTagName('CreDtTm'));
+        //@todo find a better solution
+        $creationDateTime = \DateTime::createFromFormat('Y-m-j H-i-s', date('Y-m-j H-i-s', strtotime($creationDate)));
+        //@todo Map this fields
+        $initiatingPartyName  = '';
+        $numberOfTransactions = '';
+        $controlSumCents      = '';
+        $initiatingPartyId    = '';
 
     	$this->groupHeader = new GroupHeader($messageIdentification, $initiatingPartyName);
-    	$this->groupHeader->setCreationDate(\DateTime::createFromFormat('j-M-Y', '15-Feb-2009'));
-    	$this->groupHeader->setNumberOfTransactions(3);
-    	$this->groupHeader->setControlSumCents(450000.81);
-    	$this->groupHeader->setInitiatingPartyId('');
+    	$this->groupHeader->setCreationDateTime($creationDateTime);
+    	$this->groupHeader->setNumberOfTransactions($numberOfTransactions);
+    	$this->groupHeader->setControlSumCents($controlSumCents);
+    	$this->groupHeader->setInitiatingPartyId($initiatingPartyId);
     }
 
     /**

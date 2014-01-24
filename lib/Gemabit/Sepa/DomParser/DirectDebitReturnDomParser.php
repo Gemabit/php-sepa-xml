@@ -39,14 +39,14 @@ class DirectDebitReturnDomParser extends BaseDomParser
 
 	protected $originalPaymentInformation;
 
-	protected $transactionInformation;
-
 	function __construct($filepath) {
 		parent::__construct($filepath);
 
-        $this->fillOriginalGroupInformation($this->doc->getElementsByTagName('OrgnlGrplnfAndSts'));
-        $this->fillOriginalPaymentInformation($this->doc->getElementsByTagName('OrgnlPmtlnfAndSts'));
-        $this->fillTransactionInformation($this->doc->getElementsByTagName('TxlnfAndSts'));
+        $originalGroupInformationElement = $this->doc->getElementsByTagName('OrgnlGrpInfAndSts')->item(0);
+        $originalPaymentInformation      = $this->doc->getElementsByTagName('OrgnlPmtInfAndSts')->item(0);
+
+        $this->fillOriginalGroupInformation($originalGroupInformationElement);
+        $this->fillOriginalPaymentInformation($originalPaymentInformation);
     }
 
     /**
@@ -54,14 +54,26 @@ class DirectDebitReturnDomParser extends BaseDomParser
      */
     protected function fillOriginalGroupInformation(\DOMElement $DOMOriginalGroupInformation)
     {
-    	$messageIdentification = '';
-    	$initiatingPartyName = '';
+        $originalMessageIdentification         = $this->getNodeValue($DOMOriginalGroupInformation->getElementsByTagName('OrgnlMsgId'));
+        $originalMessageNameIdentification     = $this->getNodeValue($DOMOriginalGroupInformation->getElementsByTagName('OrgnlMsgNmId'));
+        $originalNumberOfTransactions          = $this->getNodeValue($DOMOriginalGroupInformation->getElementsByTagName('OrgnlNbOfTxs'));
+        $originalControlSum                    = $this->getNodeValue($DOMOriginalGroupInformation->getElementsByTagName('OrgnlCtrlSum'));
+        $statusReasonInformationProprietary    = $this->getNodeValue($DOMOriginalGroupInformation->getElementsByTagName('StsRsnInf')->item(0)->getElementsByTagName('Rsn')->item(0)->getElementsByTagName('Prtry')->item(0));
+        //@todo Map the following fileds
+        $detailedControlSum                    = '';
+        $detailedNumberOfTransactionsPerStatus = '';
+        $detailedStatus                        = '';
 
-    	$this->originalGroupInformation = new OriginalGroupInformation($messageIdentification, $initiatingPartyName);
-    	$this->originalGroupInformation->setCreationDate(\DateTime::createFromFormat('j-M-Y', '15-Feb-2009'));
-    	$this->originalGroupInformation->setNumberOfTransactions(3);
-    	$this->originalGroupInformation->setControlSumCents(450000.81);
-    	$this->originalGroupInformation->setInitiatingPartyId('');
+    	$this->originalGroupInformation = new OriginalGroupInformation();
+
+        $this->originalGroupInformation->setOriginalMessageIdentification($originalMessageIdentification);
+        $this->originalGroupInformation->setOriginalMessageNameIdentification($originalMessageNameIdentification);
+        $this->originalGroupInformation->setOriginalNumberOfTransactions($originalNumberOfTransactions);
+        $this->originalGroupInformation->setOriginalControlSum($originalControlSum);
+        $this->originalGroupInformation->setStatusReasonInformationProprietary($statusReasonInformationProprietary);
+        $this->originalGroupInformation->setDetailedControlSum($detailedControlSum);
+        $this->originalGroupInformation->setDetailedNumberOfTransactionsPerStatus($detailedNumberOfTransactionsPerStatus);
+        $this->originalGroupInformation->setDetailedStatus($detailedStatus);
     }
 
     /**
@@ -71,16 +83,12 @@ class DirectDebitReturnDomParser extends BaseDomParser
     {
     	$this->originalPaymentInformation = new OriginalPaymentInformation();
     	
+    	$this->originalPaymentInformation->setOriginalPaymentInformationIdentification('');
     	$this->originalPaymentInformation->setOriginalNumberOfTransactions(3);
-    	$this->originalPaymentInformation->setControlSumCents(450000.81);
-    	$this->originalPaymentInformation->setInitiatingPartyId('');
-    }
+    	$this->originalPaymentInformation->setOriginalControlsum(3);
+    	$this->originalPaymentInformation->setStatusReasonInformationProprietary('');
 
-    /**
-     * Fills up the TransactionInformation with the given DOMElement
-     */
-    protected function fillTransactionInformation(\DOMElement $DOMTransactionInformation)
-    {
+        //@todo fill up tansactions
     }
 
     /**
@@ -102,15 +110,4 @@ class DirectDebitReturnDomParser extends BaseDomParser
     {
     	return $this->originalPaymentInformation;
     }
-
-    /**
-     * Returns the Transactions Information of the document
-     *
-     * @return TransactionInformation
-     */
-    public function getTransactionInformation()
-    {
-    	return $this->transactionInformation;
-    }
-
 }

@@ -7,3 +7,4 @@
 *.lock
 
 vendor/*
+tests/index.php
