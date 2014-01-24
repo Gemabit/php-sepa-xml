@@ -44,12 +44,8 @@ class DirectDebitReturnDomParser extends BaseDomParser
 	function __construct($filepath) {
 		parent::__construct($filepath);
 
-        $groupHeaderElement = $this->doc->getElementsByTagName('GrpHdr')->item(0);
-
-        $this->fillGroupHeader($groupHeaderElement);
-
-        $originalGroupInformationElement = $this->doc->getElementsByTagName('OrgnlGrplnfAndSts')->item(0);
-        $originalPaymentInformation      = $this->doc->getElementsByTagName('OrgnlPmtlnfAndSts')->item(0);
+        $originalGroupInformationElement = $this->doc->getElementsByTagName('OrgnlGrpInfAndSts')->item(0);
+        $originalPaymentInformation      = $this->doc->getElementsByTagName('OrgnlPmtInfAndSts')->item(0);
         //$transactionInformation          = $this->doc->getElementsByTagName('TxlnfAndSts')->item(0);
 
         $this->fillOriginalGroupInformation($originalGroupInformationElement);
@@ -62,7 +58,19 @@ class DirectDebitReturnDomParser extends BaseDomParser
      */
     protected function fillOriginalGroupInformation(\DOMElement $DOMOriginalGroupInformation)
     {
+        $originalMessageIdentification      = $this->getNodeValue($DOMOriginalGroupInformation->getElementsByTagName('OrgnlMsgId'));
+        $originalMessageNameIdentification  = $this->getNodeValue($DOMOriginalGroupInformation->getElementsByTagName('OrgnlMsgNmId'));
+        $originalNumberOfTransactions       = $this->getNodeValue($DOMOriginalGroupInformation->getElementsByTagName('OrgnlNbOfTxs'));
+        $originalControlSum                 = $this->getNodeValue($DOMOriginalGroupInformation->getElementsByTagName('OrgnlCtrlSum'));
+        $statusReasonInformationProprietary = $this->getNodeValue($DOMOriginalGroupInformation->getElementsByTagName('StsRsnInf')->item(0)->getElementsByTagName('Rsn')->item(0)->getElementsByTagName('Prtry')->item(0));
+
     	$this->originalGroupInformation = new OriginalGroupInformation();
+
+        $this->originalGroupInformation->setOriginalMessageIdentification($originalMessageIdentification);
+        $this->originalGroupInformation->setOriginalMessageNameIdentification($originalMessageNameIdentification);
+        $this->originalGroupInformation->setOriginalNumberOfTransactions($originalNumberOfTransactions);
+        $this->originalGroupInformation->setOriginalControlSum($originalControlSum);
+        $this->originalGroupInformation->setStatusReasonInformationProprietary($statusReasonInformationProprietary);
     }
 
     /**
