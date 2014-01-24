@@ -26,13 +26,383 @@ namespace Gemabit\Sepa\TransactionInformation;
 abstract class BaseTransactionInformation implements TransactionInformationInterface
 {
 
+    /**
+     * @var
+     */
     protected $originalEndToEndIdentification;
 
+    /**
+     * @var
+     */
     protected $statusReasonInformationCode;
 
+    /**
+     * @var
+     */
     protected $statusReasonInformationProprietary;
 
+    /**
+     * @var
+     */
     protected $originalTransactionReferenceInstructedAmount;
+
+    /**
+     * @var
+     */
+    protected $paymentMethod;
+
+    /**
+     * @var
+     */
+    protected $unstructuredRemittanceInformation;
+
+    /**
+     * @var
+     */
+    protected $structuredRemmitanceInformationCode;
+
+    /**
+     * @var
+     */
+    protected $structuredRemmitanceInformationIssuer;
+
+    /**
+     * @var
+     */
+    protected $structuredRemmitanceInformationReference;
+
+    /**
+     * @var
+     */
+    protected $ultimateDebtorName;
+
+    /**
+     * @var
+     */
+    protected $debtorName;
+
+    /**
+     * @var
+     */
+    protected $debtorIBAN;
+
+    /**
+     * @var
+     */
+    protected $creditorBIC;
+
+    /**
+     * @var
+     */
+    protected $creditorName;
+
+    /**
+     * @var
+     */
+    protected $creditorCountry;
+
+    /**
+     * @var
+     */
+    protected $creditorAddressLine;
+
+    /**
+     * @var
+     */
+    protected $creditorIBAN;
+
+    /**
+     * @var
+     */
+    protected $ultimateCreditorName;
+
+    /**
+     * @param mixed $creditorAddressLine
+     */
+    public function setCreditorAddressLine($creditorAddressLine)
+    {
+        $this->creditorAddressLine = $creditorAddressLine;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreditorAddressLine()
+    {
+        return $this->creditorAddressLine;
+    }
+
+    /**
+     * @param mixed $creditorBIC
+     */
+    public function setCreditorBIC($creditorBIC)
+    {
+        $this->creditorBIC = $creditorBIC;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreditorBIC()
+    {
+        return $this->creditorBIC;
+    }
+
+    /**
+     * @param mixed $creditorCountry
+     */
+    public function setCreditorCountry($creditorCountry)
+    {
+        $this->creditorCountry = $creditorCountry;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreditorCountry()
+    {
+        return $this->creditorCountry;
+    }
+
+    /**
+     * @param mixed $creditorIBAN
+     */
+    public function setCreditorIBAN($creditorIBAN)
+    {
+        $this->creditorIBAN = $creditorIBAN;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreditorIBAN()
+    {
+        return $this->creditorIBAN;
+    }
+
+    /**
+     * @param mixed $creditorName
+     */
+    public function setCreditorName($creditorName)
+    {
+        $this->creditorName = $creditorName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreditorName()
+    {
+        return $this->creditorName;
+    }
+
+    /**
+     * @param mixed $debtorIBAN
+     */
+    public function setDebtorIBAN($debtorIBAN)
+    {
+        $this->debtorIBAN = $debtorIBAN;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDebtorIBAN()
+    {
+        return $this->debtorIBAN;
+    }
+
+    /**
+     * @param mixed $debtorName
+     */
+    public function setDebtorName($debtorName)
+    {
+        $this->debtorName = $debtorName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDebtorName()
+    {
+        return $this->debtorName;
+    }
+
+    /**
+     * @param mixed $originalEndToEndIdentification
+     */
+    public function setOriginalEndToEndIdentification($originalEndToEndIdentification)
+    {
+        $this->originalEndToEndIdentification = $originalEndToEndIdentification;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOriginalEndToEndIdentification()
+    {
+        return $this->originalEndToEndIdentification;
+    }
+
+    /**
+     * @param mixed $originalTransactionReferenceInstructedAmount
+     */
+    public function setOriginalTransactionReferenceInstructedAmount($originalTransactionReferenceInstructedAmount)
+    {
+        $this->originalTransactionReferenceInstructedAmount = $originalTransactionReferenceInstructedAmount;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOriginalTransactionReferenceInstructedAmount()
+    {
+        return $this->originalTransactionReferenceInstructedAmount;
+    }
+
+    /**
+     * @param mixed $paymentMethod
+     */
+    public function setPaymentMethod($paymentMethod)
+    {
+        $this->paymentMethod = $paymentMethod;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPaymentMethod()
+    {
+        return $this->paymentMethod;
+    }
+
+    /**
+     * @param mixed $statusReasonInformationCode
+     */
+    public function setStatusReasonInformationCode($statusReasonInformationCode)
+    {
+        $this->statusReasonInformationCode = $statusReasonInformationCode;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatusReasonInformationCode()
+    {
+        return $this->statusReasonInformationCode;
+    }
+
+    /**
+     * @param mixed $statusReasonInformationProprietary
+     */
+    public function setStatusReasonInformationProprietary($statusReasonInformationProprietary)
+    {
+        $this->statusReasonInformationProprietary = $statusReasonInformationProprietary;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatusReasonInformationProprietary()
+    {
+        return $this->statusReasonInformationProprietary;
+    }
+
+    /**
+     * @param mixed $structuredRemmitanceInformationCode
+     */
+    public function setStructuredRemmitanceInformationCode($structuredRemmitanceInformationCode)
+    {
+        $this->structuredRemmitanceInformationCode = $structuredRemmitanceInformationCode;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStructuredRemmitanceInformationCode()
+    {
+        return $this->structuredRemmitanceInformationCode;
+    }
+
+    /**
+     * @param mixed $structuredRemmitanceInformationIssuer
+     */
+    public function setStructuredRemmitanceInformationIssuer($structuredRemmitanceInformationIssuer)
+    {
+        $this->structuredRemmitanceInformationIssuer = $structuredRemmitanceInformationIssuer;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStructuredRemmitanceInformationIssuer()
+    {
+        return $this->structuredRemmitanceInformationIssuer;
+    }
+
+    /**
+     * @param mixed $structuredRemmitanceInformationReference
+     */
+    public function setStructuredRemmitanceInformationReference($structuredRemmitanceInformationReference)
+    {
+        $this->structuredRemmitanceInformationReference = $structuredRemmitanceInformationReference;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStructuredRemmitanceInformationReference()
+    {
+        return $this->structuredRemmitanceInformationReference;
+    }
+
+    /**
+     * @param mixed $ultimateCreditorName
+     */
+    public function setUltimateCreditorName($ultimateCreditorName)
+    {
+        $this->ultimateCreditorName = $ultimateCreditorName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUltimateCreditorName()
+    {
+        return $this->ultimateCreditorName;
+    }
+
+    /**
+     * @param mixed $ultimateDebtorName
+     */
+    public function setUltimateDebtorName($ultimateDebtorName)
+    {
+        $this->ultimateDebtorName = $ultimateDebtorName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUltimateDebtorName()
+    {
+        return $this->ultimateDebtorName;
+    }
+
+    /**
+     * @param mixed $unstructuredRemittanceInformation
+     */
+    public function setUnstructuredRemittanceInformation($unstructuredRemittanceInformation)
+    {
+        $this->unstructuredRemittanceInformation = $unstructuredRemittanceInformation;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUnstructuredRemittanceInformation()
+    {
+        return $this->unstructuredRemittanceInformation;
+    }
 
 
 } 

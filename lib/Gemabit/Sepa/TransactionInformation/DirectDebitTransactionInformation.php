@@ -28,19 +28,76 @@ use Gemabit\Sepa\TransactionInformation\PaymentTypeInformation\BasePaymentTypeIn
 class DirectDebitTransactionInformation extends BaseTransactionInformation
 {
 
+    /**
+     * @var
+     */
     protected $statusIdentification;
 
+    /**
+     * @var
+     */
     protected $chargesInformationAmount;
 
+    /**
+     * @var
+     */
     protected $chargesInformationParty;
 
+    /**
+     * @var
+     */
     protected $financialInstitutionBIC;
 
+    /**
+     * @var
+     */
     protected $requestedCollectionDate;
 
+    /**
+     * @var
+     */
     protected $creditorSchemeIdentification;
 
+    /**
+     * @var
+     */
     protected $paymentTypeInformation;
+
+    /**
+     * @var
+     */
+    protected $mandateIdentification;
+
+    /**
+     * @var
+     */
+    protected $mandateDateOfSignature;
+
+    /**
+     * @var
+     */
+    protected $originalMandateIdentification;
+
+    /**
+     * @var
+     */
+    protected $originalCreditorSchemeName;
+
+    /**
+     * @var
+     */
+    protected $originalCreditorSchemeIdentification;
+
+    /**
+     * @var
+     */
+    protected $originalDebtorIBAN;
+
+    /**
+     * @var
+     */
+    protected $originalDebtorAgentIdentification;
+
 
     public function getPaymentTypeInformation()
     {
@@ -51,4 +108,214 @@ class DirectDebitTransactionInformation extends BaseTransactionInformation
     {
         $this->paymentTypeInformation = $paymentTypeInformation;
     }
+
+    /**
+     * @param mixed $chargesInformationAmount
+     */
+    public function setChargesInformationAmount($chargesInformationAmount)
+    {
+        $this->chargesInformationAmount = $chargesInformationAmount;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getChargesInformationAmount()
+    {
+        return $this->chargesInformationAmount;
+    }
+
+    /**
+     * @param mixed $chargesInformationParty
+     */
+    public function setChargesInformationParty($chargesInformationParty)
+    {
+        $this->chargesInformationParty = $chargesInformationParty;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getChargesInformationParty()
+    {
+        return $this->chargesInformationParty;
+    }
+
+    /**
+     * @param mixed $creditorSchemeIdentification
+     */
+    public function setCreditorSchemeIdentification($creditorSchemeIdentification)
+    {
+        $this->creditorSchemeIdentification = $creditorSchemeIdentification;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreditorSchemeIdentification()
+    {
+        return $this->creditorSchemeIdentification;
+    }
+
+    /**
+     * @param mixed $financialInstitutionBIC
+     */
+    public function setFinancialInstitutionBIC($financialInstitutionBIC)
+    {
+        $this->financialInstitutionBIC = $financialInstitutionBIC;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFinancialInstitutionBIC()
+    {
+        return $this->financialInstitutionBIC;
+    }
+
+    /**
+     * @param mixed $mandateDateOfSignature
+     */
+    public function setMandateDateOfSignature($mandateDateOfSignature)
+    {
+        $this->mandateDateOfSignature = $mandateDateOfSignature;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMandateDateOfSignature()
+    {
+        return $this->mandateDateOfSignature;
+    }
+
+    /**
+     * @param mixed $mandateIdentification
+     */
+    public function setMandateIdentification($mandateIdentification)
+    {
+        $this->mandateIdentification = $mandateIdentification;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMandateIdentification()
+    {
+        return $this->mandateIdentification;
+    }
+
+    /**
+     * @param mixed $originalCreditorSchemeIdentification
+     */
+    public function setOriginalCreditorSchemeIdentification($originalCreditorSchemeIdentification)
+    {
+        $this->originalCreditorSchemeIdentification = $originalCreditorSchemeIdentification;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOriginalCreditorSchemeIdentification()
+    {
+        return $this->originalCreditorSchemeIdentification;
+    }
+
+    /**
+     * @param mixed $originalCreditorSchemeName
+     */
+    public function setOriginalCreditorSchemeName($originalCreditorSchemeName)
+    {
+        $this->originalCreditorSchemeName = $originalCreditorSchemeName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOriginalCreditorSchemeName()
+    {
+        return $this->originalCreditorSchemeName;
+    }
+
+    /**
+     * @param mixed $originalDebtorAgentIdentification
+     */
+    public function setOriginalDebtorAgentIdentification($originalDebtorAgentIdentification)
+    {
+        $this->originalDebtorAgentIdentification = $originalDebtorAgentIdentification;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOriginalDebtorAgentIdentification()
+    {
+        return $this->originalDebtorAgentIdentification;
+    }
+
+    /**
+     * @param mixed $originalDebtorIBAN
+     */
+    public function setOriginalDebtorIBAN($originalDebtorIBAN)
+    {
+        $this->originalDebtorIBAN = $originalDebtorIBAN;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOriginalDebtorIBAN()
+    {
+        return $this->originalDebtorIBAN;
+    }
+
+    /**
+     * @param mixed $originalMandateIdentification
+     */
+    public function setOriginalMandateIdentification($originalMandateIdentification)
+    {
+        $this->originalMandateIdentification = $originalMandateIdentification;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOriginalMandateIdentification()
+    {
+        return $this->originalMandateIdentification;
+    }
+
+    /**
+     * @param mixed $requestedCollectionDate
+     */
+    public function setRequestedCollectionDate($requestedCollectionDate)
+    {
+        $this->requestedCollectionDate = $requestedCollectionDate;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRequestedCollectionDate()
+    {
+        return $this->requestedCollectionDate;
+    }
+
+    /**
+     * @param mixed $statusIdentification
+     */
+    public function setStatusIdentification($statusIdentification)
+    {
+        $this->statusIdentification = $statusIdentification;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatusIdentification()
+    {
+        return $this->statusIdentification;
+    }
+
+
 } 

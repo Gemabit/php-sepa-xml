@@ -30,13 +30,91 @@ class CreditTransferTransactionInformation extends BaseTransactionInformation
 
     protected $paymentTypeInformation;
 
+    protected $debtorCountry;
+
+    protected $debtorAddressLine;
+
+    protected $debtorBIC;
+
+    /**
+     * @return mixed
+     */
     public function getPaymentTypeInformation()
     {
         return $this->paymentTypeInformation;
     }
 
+    /**
+     * @param BasePaymentTypeInformation $paymentTypeInformation
+     */
     public function setPaymentTypeInformation(BasePaymentTypeInformation $paymentTypeInformation)
     {
         $this->paymentTypeInformation = $paymentTypeInformation;
     }
+
+    /**
+     * @param mixed $debtorAddressLine
+     */
+    public function setDebtorAddressLine($debtorAddressLine)
+    {
+        $this->debtorAddressLine = $debtorAddressLine;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDebtorAddressLine()
+    {
+        return $this->debtorAddressLine;
+    }
+
+    /**
+     * @param mixed $debtorBIC
+     */
+    public function setDebtorBIC($debtorBIC)
+    {
+        $this->debtorBIC = $debtorBIC;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDebtorBIC()
+    {
+        return $this->debtorBIC;
+    }
+
+    /**
+     * @param mixed $debtorCountry
+     */
+    public function setDebtorCountry($debtorCountry)
+    {
+        $this->debtorCountry = $debtorCountry;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDebtorCountry()
+    {
+        return $this->debtorCountry;
+    }
+
+    /**
+     * @param mixed $requestedExecutionDate
+     */
+    public function setRequestedExecutionDate($requestedExecutionDate)
+    {
+        $this->requestedExecutionDate = $requestedExecutionDate;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRequestedExecutionDate()
+    {
+        return $this->requestedExecutionDate;
+    }
+
+
 } 
