@@ -101,6 +101,73 @@
                     </CdtrAcct>
                 </OrgnlTxRef>
             </TxInfAndSts>
+            <TxInfAndSts>
+                <OrgnlEndToEndId>EFG/2011L0987/2011-12-05</OrgnlEndToEndId>
+                <StsRsnInf>
+                    <Rsn>
+                        <Cd>AC04</Cd>
+                    </Rsn>
+                </StsRsnInf>
+                <OrgnlTxRef>
+                    <Amt>
+                        <InstdAmt Ccy="EUR">150000.81</InstdAmt>
+                    </Amt>
+                    <ReqdExctnDt>2011-12-22</ReqdExctnDt>
+                    <PmtTpInf>
+                        <CtgyPurp>
+                            <Cd>SUPP</Cd>
+                        </CtgyPurp>
+                    </PmtTpInf>
+                    <PmtMtd>TRF</PmtMtd>
+                    <RmtInf>
+                        <Strd>
+                            <CdtrRefInf>
+                                <Tp>
+                                    <CdOrPrtry>
+                                        <Cd>SCOR</Cd>
+                                    </CdOrPrtry>
+                                    <Issr>HIJ Export Espanha</Issr>
+                                </Tp>
+                                <Ref>2011L0987</Ref>
+                            </CdtrRefInf>
+                        </Strd>
+                    </RmtInf>
+                    <Dbtr>
+                        <Nm>EFG Maquinaria, SA</Nm>
+                        <PstlAdr>
+                            <Ctry>PT</Ctry>
+                            <AdrLine>Alameda das Comunidades Portuguesas, 1700-007 Lisboa, Portugal</AdrLine>
+                        </PstlAdr>
+                    </Dbtr>
+                    <DbtrAcct>
+                        <Id>
+                            <IBAN>PT50089100000111111119034</IBAN>
+                        </Id>
+                    </DbtrAcct>
+                    <DbtrAgt>
+                        <FinInstnId>
+                            <BIC>BBBBPTPL</BIC>
+                        </FinInstnId>
+                    </DbtrAgt>
+                    <CdtrAgt>
+                        <FinInstnId>
+                            <BIC>CCCCESMM</BIC>
+                        </FinInstnId>
+                    </CdtrAgt>
+                    <Cdtr>
+                        <Nm>HIJ Export Espanha</Nm>
+                        <PstlAdr>
+                            <Ctry>ES</Ctry>
+                            <AdrLine>Plaça de Sant Jaume, S/N, 08002 Barcelona, Catalunya, Espanha</AdrLine>
+                        </PstlAdr>
+                    </Cdtr>
+                    <CdtrAcct>
+                        <Id>
+                            <IBAN>ES6409870001110123456789</IBAN>
+                        </Id>
+                    </CdtrAcct>
+                </OrgnlTxRef>
+            </TxInfAndSts>
         </OrgnlPmtInfAndSts>
     </CstmrPmtStsRpt>
 </Document>

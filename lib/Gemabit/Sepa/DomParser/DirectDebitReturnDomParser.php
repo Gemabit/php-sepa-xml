@@ -58,7 +58,7 @@ class DirectDebitReturnDomParser extends BaseDomParser
         $originalMessageNameIdentification     = $this->getNodeValue($DOMOriginalGroupInformation->getElementsByTagName('OrgnlMsgNmId'));
         $originalNumberOfTransactions          = $this->getNodeValue($DOMOriginalGroupInformation->getElementsByTagName('OrgnlNbOfTxs'));
         $originalControlSum                    = $this->getNodeValue($DOMOriginalGroupInformation->getElementsByTagName('OrgnlCtrlSum'));
-        $statusReasonInformationProprietary    = $this->getNodeValue($DOMOriginalGroupInformation->getElementsByTagName('StsRsnInf')->item(0)->getElementsByTagName('Rsn')->item(0)->getElementsByTagName('Prtry')->item(0));
+        $statusReasonInformationProprietary    = $this->getNodeValue($DOMOriginalGroupInformation->getElementsByTagName('StsRsnInf')->item(0)->getElementsByTagName('Rsn')->item(0)->getElementsByTagName('Prtry'));
         //@todo Map the following fileds
         $detailedControlSum                    = '';
         $detailedNumberOfTransactionsPerStatus = '';
@@ -81,14 +81,24 @@ class DirectDebitReturnDomParser extends BaseDomParser
      */
     protected function fillOriginalPaymentInformation(\DOMElement $DOMOriginalPaymentInformation)
     {
+        $originalPaymentInformationIdentification = $this->getNodeValue($DOMOriginalPaymentInformation->getElementsByTagName('OrgnlPmtInfId'));
+        $originalNumberOfTransactions             = $this->getNodeValue($DOMOriginalPaymentInformation->getElementsByTagName('OrgnlNbOfTxs'));
+        $originalControlsum                       = $this->getNodeValue($DOMOriginalPaymentInformation->getElementsByTagName('OrgnlCtrlSum'));
+        $statusReasonInformationProprietary       = $this->getNodeValue($DOMOriginalPaymentInformation->getElementsByTagName('StsRsnInf')->item(0)->getElementsByTagName('Rsn')->item(0)->getElementsByTagName('Prtry'));
+
     	$this->originalPaymentInformation = new OriginalPaymentInformation();
     	
-    	$this->originalPaymentInformation->setOriginalPaymentInformationIdentification('');
-    	$this->originalPaymentInformation->setOriginalNumberOfTransactions(3);
-    	$this->originalPaymentInformation->setOriginalControlsum(3);
-    	$this->originalPaymentInformation->setStatusReasonInformationProprietary('');
+    	$this->originalPaymentInformation->setOriginalPaymentInformationIdentification($originalPaymentInformationIdentification);
+    	$this->originalPaymentInformation->setOriginalNumberOfTransactions($originalNumberOfTransactions);
+    	$this->originalPaymentInformation->setOriginalControlsum($originalControlsum);
+    	$this->originalPaymentInformation->setStatusReasonInformationProprietary($statusReasonInformationProprietary);
 
+        echo '<pre>';
         //@todo fill up tansactions
+        $transactionInformationNodeList = $DOMOriginalPaymentInformation->getElementsByTagName('TxInfAndSts');
+        foreach ($transactionInformationNodeList as $transactionInformationElement) {
+            var_dump($transactionInformationElement);
+        }
     }
 
     /**
