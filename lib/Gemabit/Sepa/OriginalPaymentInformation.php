@@ -79,6 +79,54 @@ class OriginalPaymentInformation
     }
 
     /**
+     * @param mixed $detailedControlSum
+     */
+    public function setDetailedControlSum($detailedControlSum)
+    {
+        $this->detailedControlSum = $detailedControlSum;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDetailedControlSum()
+    {
+        return $this->detailedControlSum;
+    }
+
+    /**
+     * @param mixed $detailedNumberOfTransactionsPerStatus
+     */
+    public function setDetailedNumberOfTransactionsPerStatus($detailedNumberOfTransactionsPerStatus)
+    {
+        $this->detailedNumberOfTransactionsPerStatus = $detailedNumberOfTransactionsPerStatus;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDetailedNumberOfTransactionsPerStatus()
+    {
+        return $this->detailedNumberOfTransactionsPerStatus;
+    }
+
+    /**
+     * @param mixed $detailedStatus
+     */
+    public function setDetailedStatus($detailedStatus)
+    {
+        $this->detailedStatus = $detailedStatus;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDetailedStatus()
+    {
+        return $this->detailedStatus;
+    }
+
+    /**
      * @param TransactionInformationInterface $transaction
      */
     public function addTransaction(TransactionInformationInterface $transaction)

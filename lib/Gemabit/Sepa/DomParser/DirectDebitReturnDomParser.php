@@ -99,13 +99,21 @@ class DirectDebitReturnDomParser extends BaseDomParser
         $originalNumberOfTransactions             = $this->getValue($DOMOriginalPaymentInformation, 'OrgnlNbOfTxs');
         $originalControlsum                       = $this->getValue($DOMOriginalPaymentInformation, 'OrgnlCtrlSum');
         $statusReasonInformationProprietary       = $this->getValue($DOMOriginalPaymentInformation, 'StsRsnInf.Rsn.Prtry');
-        
+        $detailedNumberOfTransactionsPerStatus    = $this->getValue($DOMOriginalPaymentInformation, 'NbOfTxsPerSts.DtldNbOfTxs');
+        $detailedStatus                           = $this->getValue($DOMOriginalPaymentInformation, 'NbOfTxsPerSts.DtldSts');
+        $detailedControlSum                       = $this->getValue($DOMOriginalPaymentInformation, 'NbOfTxsPerSts.DtldCtrlSum');
+
+
     	$this->originalPaymentInformation = new OriginalPaymentInformation();
     	
     	$this->originalPaymentInformation->setOriginalPaymentInformationIdentification($originalPaymentInformationIdentification);
     	$this->originalPaymentInformation->setOriginalNumberOfTransactions($originalNumberOfTransactions);
     	$this->originalPaymentInformation->setOriginalControlsum($originalControlsum);
     	$this->originalPaymentInformation->setStatusReasonInformationProprietary($statusReasonInformationProprietary);
+
+        $this->originalPaymentInformation->setDetailedNumberOfTransactionsPerStatus($detailedNumberOfTransactionsPerStatus);
+        $this->originalPaymentInformation->setDetailedStatus($detailedStatus);
+        $this->originalPaymentInformation->setDetailedControlSum($detailedControlSum);
 
         //Lets fill up the transactions
         $transactionInformationNodeList = $DOMOriginalPaymentInformation->getElementsByTagName('TxInfAndSts');
