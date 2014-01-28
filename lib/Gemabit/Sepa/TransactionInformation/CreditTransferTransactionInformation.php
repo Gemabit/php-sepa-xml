@@ -26,15 +26,46 @@ use Gemabit\Sepa\TransactionInformation\PaymentTypeInformation\BasePaymentTypeIn
 
 class CreditTransferTransactionInformation extends BaseTransactionInformation
 {
+    
+    /**
+     * @var string
+     */
     protected $requestedExecutionDate;
 
+    /**
+     * @var string
+     */
     protected $paymentTypeInformation;
 
+    /**
+     * @var string
+     */
     protected $debtorCountry;
 
+    /**
+     * @var string
+     */
     protected $debtorAddressLine;
 
+    /**
+     * @var string
+     */
     protected $debtorBIC;
+
+    /**
+     * @var string
+     */
+    protected $remittanceInformationCode;
+
+    /**
+     * @var string
+     */
+    protected $remittanceInformationIssuer;
+
+    /**
+     * @var string
+     */
+    protected $remittanceInformationReference;
 
     /**
      * @return mixed
@@ -116,5 +147,52 @@ class CreditTransferTransactionInformation extends BaseTransactionInformation
         return $this->requestedExecutionDate;
     }
 
+    /**
+     * @param string $remittanceInformationCode
+     */
+    public function setRemittanceInformationCode($remittanceInformationCode)
+    {
+        $this->remittanceInformationCode = $remittanceInformationCode;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getRemittanceInformationCode()
+    {
+        return $this->remittanceInformationCode;
+    }
+
+    /**
+     * @param string $remittanceInformationIssuer
+     */
+    public function setRemittanceInformationIssuer($remittanceInformationIssuer)
+    {
+        $this->remittanceInformationIssuer = $remittanceInformationIssuer;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getRemittanceInformationIssuer()
+    {
+        return $this->remittanceInformationIssuer;
+    }
+
+    /**
+     * @param string $remittanceInformationReference
+     */
+    public function setRemittanceInformationCode($remittanceInformationReference)
+    {
+        $this->remittanceInformationReference = $remittanceInformationReference;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getRemittanceInformationReference()
+    {
+        return $this->remittanceInformationReference;
+    }
 
 } 

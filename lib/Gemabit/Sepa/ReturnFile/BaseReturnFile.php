@@ -22,8 +22,51 @@
 
 namespace Gemabit\Sepa\ReturnFile;
 
+use Gemabit\Sepa\DomParser\BaseDomParser;
 
+/**
+ * Base return file object used to load SEPA files
+ *
+ * Class BaseReturnFile
+ * @package Gemabit\Sepa
+ * @subpackage Gemabit\Sepa\ReturnFile
+ */
 abstract class BaseReturnFile implements ReturnFileInterface
 {
+	protected $baseDomParser;
 
-} 
+	public function __construct($filepath)
+	{
+		$this->baseDomParser = new BaseDomParser($filepath);
+	}
+
+    /**
+     * Returns the GroupHeader Information of the document
+     *
+     * @return GroupHeader
+     */
+    public function getGroupHeader()
+    {
+    	return $this->baseDomParser->getGroupHeader();
+    }
+
+    /**
+     * Returns the Original Group Information
+     *
+     * @return OriginalGroupInformation
+     */
+    public function getOriginalGroupInformation()
+    {
+    	return $this->baseDomParser->getOriginalGroupInformation();
+    }
+
+    /**
+     * Returns the Original Payment Information
+     *
+     * @return OriginalPaymentInformation
+     */
+    public function getOriginalPaymentInformation()
+    {
+    	return $this->baseDomParser->getOriginalPaymentInformation();
+    }
+}
