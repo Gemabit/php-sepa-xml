@@ -22,11 +22,6 @@
 
 namespace Gemabit\Sepa\DomParser;
 
-use Digitick\Sepa\GroupHeader;
-use Digitick\Sepa\PaymentInformation;
-use Gemabit\Sepa\ReturnFile\ReturnFileInterface;
-use Digitick\Sepa\TransferInformation\TransferInformationInterface;
-
 /**
  * Used to parse the Dom-structure for the different types of SEPA files
  *
@@ -56,5 +51,4 @@ interface DomParserInterface
      * @return OriginalPaymentInformation
      */
     public function getOriginalPaymentInformation();
-
 } 

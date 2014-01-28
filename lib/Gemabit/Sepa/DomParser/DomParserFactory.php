@@ -22,8 +22,32 @@
 
 namespace Gemabit\Sepa\DomParser;
 
+use Digitick\Sepa\Exception\InvalidArgumentException;
 
+/**
+ * Used to parse the Dom-structure for the Direct Debit Return File
+ * 
+ * Class DomParserFactory
+ * @package Gemabit\Sepa
+ * @subpackage Gemabit\Sepa\DomParser
+ */
 class DomParserFactory
 {
 
-} 
+    public static function createDomParser($filepath)
+    {
+    	$varType = gettype($filepath);
+    	switch ($varType) {
+    		case 'string':
+    			return new BaseDomParser($filepath);
+    		case 'array':
+    			$listDomParsers = array();
+    			foreach ($filepath as $file) {
+    				$listDomParsers[] = new BaseDomParser($filepath);
+    			}
+    			return $listDomParsers;
+    		default:
+    			throw new InvalidArgumentException('Invalid filepath type ' . $varType . ', should be a string or an array.';
+    	}
+    }
+}

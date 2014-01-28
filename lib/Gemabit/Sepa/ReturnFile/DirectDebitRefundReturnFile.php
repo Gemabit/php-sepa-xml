@@ -22,8 +22,13 @@
 
 namespace Gemabit\Sepa\ReturnFile;
 
-
+/**
+ * Direct Debit refund and return file object used to load SEPA files
+ *
+ * Class DirectDebitRefundReturnFile
+ * @package Gemabit\Sepa
+ * @subpackage Gemabit\Sepa\ReturnFile
+ */
 class DirectDebitRefundReturnFile extends BaseReturnFile
 {
-
-} 
+}

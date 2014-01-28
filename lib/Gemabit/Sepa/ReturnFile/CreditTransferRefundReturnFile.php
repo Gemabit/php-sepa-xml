@@ -22,8 +22,14 @@
 
 namespace Gemabit\Sepa\ReturnFile;
 
-
+/**
+ * Credit transfer refund and return file object used to load SEPA files
+ *
+ * Class CreditTransferRefundReturnFile
+ * @package Gemabit\Sepa
+ * @subpackage Gemabit\Sepa\ReturnFile
+ */
 class CreditTransferRefundReturnFile extends BaseReturnFile
 {
-
-} 
+}
+ 

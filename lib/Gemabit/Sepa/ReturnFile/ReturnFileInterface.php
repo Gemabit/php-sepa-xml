@@ -22,8 +22,28 @@
 
 namespace Gemabit\Sepa\ReturnFile;
 
-
 interface ReturnFileInterface
 {
+    public function __construct($filepath);
 
+    /**
+     * Returns the GroupHeader Information of the document
+     *
+     * @return GroupHeader
+     */
+    public function getGroupHeader();
+
+    /**
+     * Returns the Original Group Information
+     *
+     * @return OriginalGroupInformation
+     */
+    public function getOriginalGroupInformation();
+
+    /**
+     * Returns the Original Payment Information
+     *
+     * @return OriginalPaymentInformation
+     */
+    public function getOriginalPaymentInformation();
 } 
