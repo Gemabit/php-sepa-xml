@@ -22,8 +22,13 @@
 
 namespace Gemabit\Sepa\DomParser;
 
-
+/**
+ * Used to parse the Dom-structure for the Direct Debit Return File
+ *
+ * Class CreditTransferReturnDomParser
+ * @package Gemabit\Sepa
+ * @subpackage Gemabit\Sepa\DomParser
+ */
 class CreditTransferReturnDomParser extends BaseDomParser
 {
-
-} 
+}
