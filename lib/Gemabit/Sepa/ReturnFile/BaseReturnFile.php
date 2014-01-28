@@ -23,6 +23,7 @@
 namespace Gemabit\Sepa\ReturnFile;
 
 use Gemabit\Sepa\DomParser\BaseDomParser;
+use Gemabit\Sepa\DomParser\DomParserInterface;
 
 /**
  * Base return file object used to load SEPA files
@@ -35,9 +36,9 @@ abstract class BaseReturnFile implements ReturnFileInterface
 {
 	protected $baseDomParser;
 
-	public function __construct($filepath)
+	public function __construct(DomParserInterface $parser)
 	{
-		$this->baseDomParser = new BaseDomParser($filepath);
+		$this->baseDomParser = $parser;
 	}
 
     /**

@@ -6,13 +6,13 @@
  * @license Apache License, Version 2.0
  *
  *  Copyright 2014 Gemabit
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,30 +20,38 @@
  * limitations under the License.
  */
 
-namespace Gemabit\Sepa\ReturnFile;
+namespace Gemabit\Sepa\TransferFile;
 
-interface ReturnFileInterface
-{
-    public function __construct(DomParserInterface $parser);
+
+use Digitick\Sepa\DomBuilder\DomBuilderInterface;
+use Digitick\Sepa\GroupHeader;
+
+class DirectDebitReversalTransferFile implements \Digitick\Sepa\TransferFile\TransferFileInterface{
+
+    public function __construct(GroupHeader $groupHeader)
+    {
+        // TODO: Implement __construct() method.
+    }
 
     /**
-     * Returns the GroupHeader Information of the document
-     *
      * @return GroupHeader
      */
-    public function getGroupHeader();
+    public function getGroupHeader()
+    {
+        // TODO: Implement getGroupHeader() method.
+    }
 
     /**
-     * Returns the Original Group Information
-     *
-     * @return OriginalGroupInformation
+     * Validate the transferfile
+     * @return mixed
      */
-    public function getOriginalGroupInformation();
+    public function validate()
+    {
+        // TODO: Implement validate() method.
+    }
 
-    /**
-     * Returns the Original Payment Information
-     *
-     * @return OriginalPaymentInformation
-     */
-    public function getOriginalPaymentInformation();
-} 
+    public function accept(DomBuilderInterface $domBuilder)
+    {
+        // TODO: Implement accept() method.
+    }
+}
