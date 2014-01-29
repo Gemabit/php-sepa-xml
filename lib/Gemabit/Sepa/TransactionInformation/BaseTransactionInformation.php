@@ -79,6 +79,11 @@ abstract class BaseTransactionInformation implements TransactionInformationInter
     /**
      * @var
      */
+    protected $debtorBIC;
+
+    /**
+     * @var
+     */
     protected $debtorName;
 
     /**
@@ -115,6 +120,11 @@ abstract class BaseTransactionInformation implements TransactionInformationInter
      * @var
      */
     protected $ultimateCreditorName;
+
+    public function __constuct()
+    {
+        //Do something
+    }
 
     /**
      * @param mixed $creditorAddressLine
@@ -194,6 +204,22 @@ abstract class BaseTransactionInformation implements TransactionInformationInter
     public function getCreditorName()
     {
         return $this->creditorName;
+    }
+
+    /**
+     * @param mixed $debtorBIC
+     */
+    public function setDebtorBIC($debtorBIC)
+    {
+        $this->debtorBIC = $debtorBIC;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDebtorBIC()
+    {
+        return $this->debtorBIC;
     }
 
     /**

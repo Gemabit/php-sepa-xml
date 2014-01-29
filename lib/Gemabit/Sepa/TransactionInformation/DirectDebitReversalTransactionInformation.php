@@ -36,6 +36,16 @@ class DirectDebitReversalTransactionInformation extends BaseTransactionInformati
 
     protected $creditorSchemeIdentification;
 
+    protected $mandateIdentification;
+
+    protected $dateOfSignature;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->dateOfSignature = new \Datetime();
+    }
     /**
      * @return mixed
      */
@@ -114,5 +124,37 @@ class DirectDebitReversalTransactionInformation extends BaseTransactionInformati
     public function getCreditorSchemeIdentification()
     {
         return $creditorSchemeIdentification;
+    }
+
+    /**
+     * @param strig $mandateIdentification
+     */
+    public function setMandateIdentification($mandateIdentification)
+    {
+        $this->mandateIdentification = $mandateIdentification;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMandateIdentification()
+    {
+        return $mandateIdentification;
+    }
+
+    /**
+     * @param \Datetime $dateOfSignature
+     */
+    public function setDateOfSignature(\Datetime $dateOfSignature)
+    {
+        $this->dateOfSignature = $dateOfSignature;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDateOfSignature()
+    {
+        return $dateOfSignature;
     }
 }

@@ -93,23 +93,112 @@ class DirectDebitReversalDomBuilder extends BaseDomBuilder
         $transactions = $originalPaymentInformation->getTransactions();
         if (!is_null($transactions)) {
             foreach ($transactions as $transaction) {
-                $transactionInformation->appendChild('OrgnlEndToEndId', $transaction->getOriginalEndToEndIdentification());
-                $transactionInformation->appendChild('OrgnlInstdAmt', $transaction->getOriginalInstructedAmount())->setAttribute('Ccy', 'EUR'));
-                $transactionInformation->appendChild('RvslRsnlf')->appendChild('Rsn')->appendChild('Cd', $transaction->getReversalReasonInformationCode())));
+                // <OrgnlEndToEndId>
+                $originalEndToEndIdentification = $this->createElement('OrgnlEndToEndId', $transaction->getOriginalEndToEndIdentification());
+                $transactionInformation->appendChild($originalEndToEndIdentification);
+                
+                // <OrgnlInstdAmt>
+                $originalInstructedAmount = $this->createElement('OrgnlInstdAmt', $transaction->getOriginalInstructedAmount());
+                $originalInstructedAmount->setAttribute('Ccy', 'EUR');
 
+                $transactionInformation->appendChild($originalInstructedAmount);
+                
+                // <RvslRsnlf>
+                $reversalReasonInformation = $this->createElement('RvslRsnlf');
+                $reason                    = $this->createElement('Rsn');
+                $code                      = $this->createElement('Cd', $transaction->getReversalReasonInformationCode());
+
+                $reason->appendChild($code);
+                $reversalReasonInformation->appendChild($reason);
+                $transactionInformation->appendChild($reversalReasonInformation);
+
+                // <OrgnlTxRef> Every node that follows
                 $originalTransactionReference = $this->createElement('OrgnlTxRef');
-                // @todo convert to string
-                $originalTransactionReference->appendChild('ReqdColtltnDt', $transaction->getRequestedCollectionDate());
-                $originalTransactionReference->appendChild('CdtrSchmeId')->appendChild('Id')->appendChild('PrvtId')->appendChild('Othr')->appendChild('Id', $transaction->getCreditorSchemeIdentification());
+                
+                // <ReqdColtltnDt>
+                $requestedCollectionDate = $this->createElement('ReqdColtltnDt', $transaction->getRequestedCollectionDate()->format('Y-m-d'));
+                $originalTransactionReference->appendChild($requestedCollectionDate);
+                
+                // <CdtrSchmeId>
+                $creditorSchemeId = $this->createElement('CdtrSchmeId');
+                $id = $this->createElement('Id');
+                $privateId = $this->createElement('PrvtId');
+                $other = $this->createElement('Othr');
+                $other->appendChild($this->createElement('Id', $paymentInformation->getCreditorId()));
+
+                $privateId->appendChild($other);
+                $id->appendChild($privateId);
+                $creditorSchemeId->appendChild($id);
+                $originalTransactionReference->appendChild($creditorSchemeId);
+
+                // <PmtTpInf>
                 $paymentTypeInformation = $transaction->getPaymentTypeInformation();
-                $originalTransactionReference->appendChild('PmtTpInf')->appendChild('SeqTp', $paymentTypeInformation->getSequenceType());
+                $sequenceType           = $this->createElement('SeqTp', $paymentTypeInformation->getSequenceType());
+
+                $originalTransactionReference->appendChild($this->createElement('PmtTpInf', $sequenceType);
+                
+                // <MndtRltInf>
                 $mandateRelatedInformation = $this->createElement('MndtRltInf');
+                $mandateIdentification     = $this->createElement('MndtId', $transaction->getMandateIdentification());
+                $dateOfSignature           = $this->createElement('DtOfSgntr', $transaction->getDateOfSignature()->format('Y-m-d'));
                 
+                $mandateRelatedInformation->appendChild($mandateIdentification);
+                $mandateRelatedInformation->appendChild($dateOfSignature);
+                $originalTransactionReference->appendChild($mandateRelatedInformation);
+
+                // <Dbtr>
+                $debtor = $this->createElement('Dbtr');
+                $name   = $this->createElement('Nm', $transaction->getDebtorName());
+
+                $debtor->appendChild($name);
+                $originalTransactionReference->appendChild($debtor);
                 
+                // <DbtrAcct>
+                $debtorAccount = $this->createElement('DbtrAcct');
+                $id            = $this->createElement('Id');
+                $iban          = $this->createElement('IBAN', $transaction->getDebtorIBAN());
+
+                $id->appendChild($iban);
+                $debtorAccount->appendChild($id);
+                $originalTransactionReference->appendChild($debtorAccount);
                 
+                // <DbtrAgt>
+                $debtorAgent = $this->createElement('DbtrAgt');
+                $financialId = $this->createElement('FinInstnId');
+                $bic         = $this->createElement('BIC', $transaction->getDebtorBIC());
+
+                $financialId->appendChild($bic);
+                $debtorAgent->appendChild($financialId);
+                $originalTransactionReference->appendChild($debtorAgent);
+
+                // <CdtrAgt>
+                $creditorAgent = $this->createElement('CdtrAgt');
+                $financialId = $this->createElement('FinInstnId');
+                $bic         = $this->createElement('BIC', $transaction->getCreditorBIC());
+
+                $financialId->appendChild($bic);
+                $creditorAgent->appendChild($financialId);
+                $originalTransactionReference->appendChild($creditorAgent);
+                
+                // <Cdtr>
+                $creditor = $this->createElement('Cdtr');
+                $name     = $this->createElement('Nm', $transaction->getCreditorName());
+
+                $creditor->appendChild($name);
+                $originalTransactionReference->appendChild($creditor);
+
+                // <CdtrAcct>
+                $creditorAccount = $this->createElement('CdtrAcct');
+                $id              = $this->createElement('Id');
+                $iban            = $this->createElement('IBAN', $transaction->getCreditorIBAN());
+
+                $id->appendChild($iban);
+                $creditorAccount->appendChild($id);
+                $originalTransactionReference->appendChild($creditorAccount);
+
+                $transactionInformation->appendChild($originalTransactionReference);
             }
         }
         $this->originalPaymentInformation->appendChild($transactionInformation);
-
     }
 }
