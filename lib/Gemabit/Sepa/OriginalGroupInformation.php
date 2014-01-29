@@ -68,9 +68,10 @@ class OriginalGroupInformation
      */
     protected $detailedControlSum;
 
-    public function __construct()
+    public function __construct($originalMessageIdentification = '', $originalMessageNameIdentification = 'pain.008.001.02')
     {
-
+        $this->originalMessageIdentification = $originalMessageIdentification;
+        $this->originalMessageNameIdentification = $originalMessageNameIdentification;
     }
 
     /**
