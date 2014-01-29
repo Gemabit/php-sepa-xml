@@ -30,7 +30,7 @@ class OriginalPaymentInformation
     /**
      * @var string
      */
-    protected $OriginalPaymentInformationIdentification;
+    protected $originalPaymentInformationIdentification;
 
     /**
      * @var int Number of transactions of the original document
@@ -72,6 +72,11 @@ class OriginalPaymentInformation
      * @var string total amount for the reported transactions ([0-9]){1,15}(\,|\.)?([0-9]){0,2}
      */
     protected $detailedControlSum;
+
+    /**
+     * @var string
+     */
+    protected $paymentInformationReversal;
 
     public function __construct()
     {
@@ -155,7 +160,7 @@ class OriginalPaymentInformation
      */
     public function getOriginalPaymentInformationIdentification()
     {
-        return $this->OriginalPaymentInformationIdentification;
+        return $this->originalPaymentInformationIdentification;
     }
 
     /**
@@ -206,5 +211,19 @@ class OriginalPaymentInformation
         return $this->statusReasonInformationProprietary;
     }
 
+    /**
+     * @param string $paymentInformationReversal
+     */
+    public function setPaymentInformationReversal($paymentInformationReversal)
+    {
+        $this->paymentInformationReversal = $paymentInformationReversal;
+    }
 
+    /**
+     * @return string
+     */
+    public function getPaymentInformationReversal()
+    {
+        return $this->paymentInformationReversal;
+    }
 } 

@@ -28,6 +28,14 @@ use Gemabit\Sepa\TransactionInformation\PaymentTypeInformation\BasePaymentTypeIn
 class DirectDebitReversalTransactionInformation extends BaseTransactionInformation
 {
 
+    protected $originalInstructedAmount;
+
+    protected $reversalReasonInformationCode;
+
+    protected $requestedCollectionDate;
+
+    protected $creditorSchemeIdentification;
+
     /**
      * @return mixed
      */
@@ -42,5 +50,69 @@ class DirectDebitReversalTransactionInformation extends BaseTransactionInformati
     public function setPaymentTypeInformation(BasePaymentTypeInformation $paymentTypeInformation)
     {
         // TODO: Implement setPaymentTypeInformation() method.
+    }
+
+    /**
+     * @param string $originalInstructedAmount
+     */
+    public function setPaymentTypeInformation($originalInstructedAmount)
+    {
+        $this->originalInstructedAmount = $originalInstructedAmount;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOriginalInstructedAmount()
+    {
+        return $originalInstructedAmount;
+    }
+
+    /**
+     * @param string $reversalReasonInformationCode
+     */
+    public function setReversalReasonInformationCode($reversalReasonInformationCode)
+    {
+        $this->reversalReasonInformationCode = $reversalReasonInformationCode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReversalReasonInformationCode()
+    {
+        return $reversalReasonInformationCode;
+    }
+
+    /**
+     * @param \Datetime $requestedCollectionDate
+     */
+    public function setRequestedCollectionDate(\Datetime $requestedCollectionDate)
+    {
+        $this->requestedCollectionDate = $requestedCollectionDate;
+    }
+
+    /**
+     * @return \Datetime
+     */
+    public function getRequestedCollectionDate()
+    {
+        return $requestedCollectionDate;
+    }
+
+    /**
+     * @param strig $creditorSchemeIdentification
+     */
+    public function setCreditorSchemeIdentification($creditorSchemeIdentification)
+    {
+        $this->creditorSchemeIdentification = $creditorSchemeIdentification;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCreditorSchemeIdentification()
+    {
+        return $creditorSchemeIdentification;
     }
 }
