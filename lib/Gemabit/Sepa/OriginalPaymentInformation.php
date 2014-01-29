@@ -23,6 +23,7 @@
 namespace Gemabit\Sepa;
 
 use Gemabit\Sepa\TransactionInformation\TransactionInformationInterface;
+use Gemabit\Sepa\DomBuilder\DomBuilderInterface;
 
 class OriginalPaymentInformation
 {
@@ -225,5 +226,13 @@ class OriginalPaymentInformation
     public function getPaymentInformationReversal()
     {
         return $this->paymentInformationReversal;
+    }
+
+    /**
+     * @param DomBuilderInterface $domBuilder
+     */
+    public function accept(DomBuilderInterface $domBuilder)
+    {
+        $domBuilder->visitGroupHeader($this);
     }
 } 

@@ -49,15 +49,6 @@ abstract class BaseReversalFile implements ReversalFileInterface
         return $this->groupHeader;
     }
 
-    /**
-     * Validate the transferfile
-     * @return mixed
-     */
-    public function validate()
-    {
-        // TODO: Implement validate() method.
-    }
-
     public function accept(DomBuilderInterface $domBuilder)
     {
         $this->validate();

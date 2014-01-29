@@ -22,6 +22,7 @@
 
 namespace Gemabit\Sepa;
 
+use Gemabit\Sepa\DomBuilder\DomBuilderInterface;
 
 class OriginalGroupInformation
 {
@@ -199,4 +200,12 @@ class OriginalGroupInformation
     {
         return $this->statusReasonInformationProprietary;
     }
-} 
+
+    /**
+     * @param DomBuilderInterface $domBuilder
+     */
+    public function accept(DomBuilderInterface $domBuilder)
+    {
+        $domBuilder->visitGroupHeader($this);
+    }
+}

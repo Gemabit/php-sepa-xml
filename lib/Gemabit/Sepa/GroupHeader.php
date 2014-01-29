@@ -22,6 +22,8 @@
 
 namespace Gemabit\Sepa;
 
+use Gemabit\Sepa\DomBuilder\DomBuilderInterface;
+
 class GroupHeader extends \Digitick\Sepa\GroupHeader
 {
 
@@ -56,6 +58,14 @@ class GroupHeader extends \Digitick\Sepa\GroupHeader
         }
 
         return $this->groupReversal;
+    }
+
+    /**
+     * @param DomBuilderInterface $domBuilder
+     */
+    public function accept(DomBuilderInterface $domBuilder)
+    {
+        $domBuilder->visitGroupHeader($this);
     }
 
     /**

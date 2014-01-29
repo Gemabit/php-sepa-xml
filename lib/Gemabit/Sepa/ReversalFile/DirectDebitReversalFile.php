@@ -22,7 +22,10 @@
 
 namespace Gemabit\Sepa\ReversalFile;
 
+use Gemabit\Sepa\DomBuilder\DomBuilderInterface;
 use Gemabit\Sepa\OriginalGroupInformation;
+use Gemabit\Sepa\OriginalPaymentInformation;
+use Gemabit\Sepa\Exception\InvalidReversalFileConfiguration;
 
 class DirectDebitReversalFile extends BaseReversalFile
 {
@@ -32,6 +35,64 @@ class DirectDebitReversalFile extends BaseReversalFile
     protected $originalGroupInformation;
 
     /**
-     *
+     * @var array<OriginalPaymentInformation> $originalPaymentInformation
      */
+    protected $originalPaymentInformations;
+
+    /**
+     * @param OriginalGroupInformation $originalGroupInformation
+     */
+    public function setOriginalGroupInformation($originalGroupInformation)
+    {
+        $this->originalGroupInformation = $originalGroupInformation;
+    }
+
+    /**
+     * @return OriginalGroupInformation
+     */
+    public function getOriginalGroupInformation()
+    {
+        return $this->originalGroupInformation;
+    }
+
+    /**
+     * @param OriginalPaymentInformation $originalPaymentInformation
+     */
+    public function addOriginalPaymentInformation(OriginalPaymentInformation $originalPaymentInformation)
+    {
+        $this->originalPaymentInformations[] = $originalPaymentInformation;
+    }
+
+    /**
+     * @return array<OriginalPaymentInformation>
+     */
+    public function getOriginalPaymentInformations()
+    {
+        return $this->originalPaymentInformations;
+    }
+
+    /**
+     * @param DomBuilderInterface $domBuilder
+     */
+    public function accept(DomBuilderInterface $domBuilder)
+    {
+        parent::accept($domBuilder);
+
+        $this->originalGroupInformation->accept($domBuilder);
+
+        foreach ($this->originalPaymentInformations as $originalPaymentInformation) {
+            $originalPaymentInformation->accept($domBuilder);
+        }
+    }
+
+    /**
+     * Validate the reversalfile
+     * @return mixed
+     */
+    public function validate()
+    {
+        if (count($this->originalPaymentInformations) === 0) {
+            throw new InvalidReversalFileConfiguration('No paymentinformations available, add paymentInformation via addPaymentInformation()');
+        }
+    }
 }
