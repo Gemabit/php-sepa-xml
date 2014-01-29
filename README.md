@@ -8,7 +8,7 @@ Extends Digitick original lib to allow return file parsing and Direct Debit Reve
 
 ##Reversal Direct Debit
 
-To create a Reversal Direct Debit xml file, using the example that's on page 111 of this [![document](http://www.bportugal.pt/SiteCollectionDocuments/DPG-SP-SEPA-Manual-C2B-XML.pdf), you may do as follows.
+To create a Reversal Direct Debit xml file, using the example that's on page 111 of this [document](http://www.bportugal.pt/SiteCollectionDocuments/DPG-SP-SEPA-Manual-C2B-XML.pdf), you may do as follows.
 
 ```php
 use Gemabit\Sepa\GroupHeader;
