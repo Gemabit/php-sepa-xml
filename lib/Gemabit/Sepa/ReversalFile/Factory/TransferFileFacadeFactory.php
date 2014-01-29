@@ -20,9 +20,21 @@
  * limitations under the License.
  */
 
-namespace Gemabit\Sepa\TransferFile\Facade;
+namespace Gemabit\Sepa\ReversalFile\Factory;
 
+use Gemabit\Sepa\GroupHeader;
+use Gemabit\Sepa\ReversalFile\DirectDebitReversalFile;
+use Gemabit\Sepa\ReversalFile\Facade\DirectDebitReversalFacade;
+use Gemabit\Sepa\DomBuilder\DirectDebitReversalDomBuilder;
 
-class DirectDebitReversalFacade {
+class ReversalFileFacadeFactory
+{
+    public static function createDirectDebitReversal($uniqueMessageIdentification, $initiatingPartyName)
+    {
+        $groupHeader = new GroupHeader($uniqueMessageIdentification, $initiatingPartyName);
+        $directDebitReversalFile = new DirectDebitReversalFile($groupHeader);
+        $domBuilder = new DirectDebitReversalDomBuilder();
 
+        return new DirectDebitReversalFacade($directDebitReversalFile, $domBuilder);
+    }
 } 

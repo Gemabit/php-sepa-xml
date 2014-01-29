@@ -20,20 +20,9 @@
  * limitations under the License.
  */
 
-namespace Gemabit\Sepa\TransferFile;
-
-use Gemabit\Sepa\OriginalGroupInformation;
-use Gemabit\Sepa\OriginalPaymentInformation;
+namespace Gemabit\Sepa\ReversalFile\Facade;
 
 
-class DirectDebitReversalTransferFile extends BaseReversalTransferFile
-{
-    /**
-     * @var OriginalGroupInformation $originalGroupInformation
-     */
-    protected $originalGroupInformation;
+class DirectDebitReversalFacade {
 
-    /**
-     *
-     */
-}
+} 
