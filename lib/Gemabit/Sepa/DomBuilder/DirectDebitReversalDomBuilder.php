@@ -124,7 +124,7 @@ class DirectDebitReversalDomBuilder extends BaseDomBuilder
                 $id = $this->createElement('Id');
                 $privateId = $this->createElement('PrvtId');
                 $other = $this->createElement('Othr');
-                $other->appendChild($this->createElement('Id', $paymentInformation->getCreditorId()));
+                $other->appendChild($this->createElement('Id', $transaction->getCreditorSchemeIdentification()));
 
                 $privateId->appendChild($other);
                 $id->appendChild($privateId);
@@ -135,7 +135,7 @@ class DirectDebitReversalDomBuilder extends BaseDomBuilder
                 $paymentTypeInformation = $transaction->getPaymentTypeInformation();
                 $sequenceType           = $this->createElement('SeqTp', $paymentTypeInformation->getSequenceType());
 
-                $originalTransactionReference->appendChild($this->createElement('PmtTpInf', $sequenceType);
+                $originalTransactionReference->appendChild($this->createElement('PmtTpInf', $sequenceType));
                 
                 // <MndtRltInf>
                 $mandateRelatedInformation = $this->createElement('MndtRltInf');

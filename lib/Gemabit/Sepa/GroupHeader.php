@@ -26,6 +26,11 @@ class GroupHeader extends \Digitick\Sepa\GroupHeader
 {
 
     /**
+     * @var string
+     */
+    protected $privateIdentification;
+
+    /**
      * @return \DateTime
      */
     public function setCreationDateTime(\DateTime $creationDateTime)
@@ -51,5 +56,21 @@ class GroupHeader extends \Digitick\Sepa\GroupHeader
         }
 
         return $this->groupReversal;
+    }
+
+    /**
+     * @param string $privateIdentification
+     */
+    public function setPrivateIdentification($privateIdentification)
+    {
+        $this->privateIdentification = $privateIdentification;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPrivateIdentification()
+    {
+        return $this->privateIdentification;
     }
 }
