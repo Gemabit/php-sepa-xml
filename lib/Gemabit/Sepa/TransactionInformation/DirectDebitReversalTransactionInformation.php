@@ -65,7 +65,7 @@ class DirectDebitReversalTransactionInformation extends BaseTransactionInformati
     /**
      * @param string $originalInstructedAmount
      */
-    public function setPaymentTypeInformation($originalInstructedAmount)
+    public function setOriginalInstructedAmount($originalInstructedAmount)
     {
         $this->originalInstructedAmount = $originalInstructedAmount;
     }
