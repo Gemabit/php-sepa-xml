@@ -39,10 +39,10 @@ class DirectDebitReversalDomBuilder extends BaseDomBuilder
      * @param ReturnFileInterface $returnFile
      * @return mixed
      */
-    public function visitTransferFile(ReturnFileInterface $returnFile)
+    public function visitFile($file)
     {
-        $this->currentTransfer = $this->doc->createElement('CstmrPmtRvsl');
-        $this->root->appendChild($this->currentTransfer);
+        $this->file = $this->doc->createElement('CstmrPmtRvsl');
+        $this->root->appendChild($this->file);
     }
 
     /**
@@ -63,6 +63,8 @@ class DirectDebitReversalDomBuilder extends BaseDomBuilder
         //Adding the child nodes to the parent
         $this->originalGroupInformation->appendChild($originalMessageIdentification);
         $this->originalGroupInformation->appendChild($originalMessageNameIdentification);
+
+        $this->file->appendChild($this->originalGroupInformation);
     }
 
     /**
@@ -103,8 +105,8 @@ class DirectDebitReversalDomBuilder extends BaseDomBuilder
 
                 $transactionInformation->appendChild($originalInstructedAmount);
                 
-                // <RvslRsnlf>
-                $reversalReasonInformation = $this->createElement('RvslRsnlf');
+                // <RvslRsnInf>
+                $reversalReasonInformation = $this->createElement('RvslRsnInf');
                 $reason                    = $this->createElement('Rsn');
                 $code                      = $this->createElement('Cd', $transaction->getReversalReasonInformationCode());
 
@@ -115,8 +117,8 @@ class DirectDebitReversalDomBuilder extends BaseDomBuilder
                 // <OrgnlTxRef> Every node that follows
                 $originalTransactionReference = $this->createElement('OrgnlTxRef');
                 
-                // <ReqdColtltnDt>
-                $requestedCollectionDate = $this->createElement('ReqdColtltnDt', $transaction->getRequestedCollectionDate()->format('Y-m-d'));
+                // <ReqdColltnDt>
+                $requestedCollectionDate = $this->createElement('ReqdColltnDt', $transaction->getRequestedCollectionDate()->format('Y-m-d'));
                 $originalTransactionReference->appendChild($requestedCollectionDate);
                 
                 // <CdtrSchmeId>
@@ -132,13 +134,15 @@ class DirectDebitReversalDomBuilder extends BaseDomBuilder
                 $originalTransactionReference->appendChild($creditorSchemeId);
 
                 // <PmtTpInf>
-                $paymentTypeInformation = $transaction->getPaymentTypeInformation();
-                $sequenceType           = $this->createElement('SeqTp', $paymentTypeInformation->getSequenceType());
+                $paymentTypeInformation     = $transaction->getPaymentTypeInformation();
+                $paymentTypeInformationNode = $this->createElement('PmtTpInf');
+                $sequenceType               = $this->createElement('SeqTp', $paymentTypeInformation->getSequenceType());
 
-                $originalTransactionReference->appendChild($this->createElement('PmtTpInf', $sequenceType));
+                $paymentTypeInformationNode->appendChild($sequenceType);
+                $originalTransactionReference->appendChild($paymentTypeInformationNode);
                 
-                // <MndtRltInf>
-                $mandateRelatedInformation = $this->createElement('MndtRltInf');
+                // <MndtRltdInf>
+                $mandateRelatedInformation = $this->createElement('MndtRltdInf');
                 $mandateIdentification     = $this->createElement('MndtId', $transaction->getMandateIdentification());
                 $dateOfSignature           = $this->createElement('DtOfSgntr', $transaction->getDateOfSignature()->format('Y-m-d'));
                 
@@ -200,5 +204,7 @@ class DirectDebitReversalDomBuilder extends BaseDomBuilder
             }
         }
         $this->originalPaymentInformation->appendChild($transactionInformation);
+        
+        $this->file->appendChild($this->originalPaymentInformation);
     }
 }

@@ -38,10 +38,10 @@ interface DomBuilderInterface
     /**
      * Build the root of the document
      *
-     * @param ReturnFileInterface $returnFile
+     * @param ReturnFileInterface|ReversalFileInterface $file
      * @return mixed
      */
-    public function visitTransferFile(ReturnFileInterface $returnFile);
+    public function visitFile($file);
 
     /**
      * Add GroupHeader Information to the document

@@ -42,7 +42,7 @@ class DirectDebitReversalFile extends BaseReversalFile
     /**
      * @param OriginalGroupInformation $originalGroupInformation
      */
-    public function setOriginalGroupInformation($originalGroupInformation)
+    public function setOriginalGroupInformation(OriginalGroupInformation $originalGroupInformation)
     {
         $this->originalGroupInformation = $originalGroupInformation;
     }

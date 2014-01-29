@@ -233,6 +233,6 @@ class OriginalPaymentInformation
      */
     public function accept(DomBuilderInterface $domBuilder)
     {
-        $domBuilder->visitGroupHeader($this);
+        $domBuilder->visitOriginalPaymentInformation($this);
     }
 } 

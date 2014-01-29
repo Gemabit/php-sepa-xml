@@ -206,6 +206,6 @@ class OriginalGroupInformation
      */
     public function accept(DomBuilderInterface $domBuilder)
     {
-        $domBuilder->visitGroupHeader($this);
+        $domBuilder->visitOriginalGroupInformation($this);
     }
 }

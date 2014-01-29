@@ -23,14 +23,176 @@
 namespace Gemabit\Sepa;
 
 use Gemabit\Sepa\DomBuilder\DomBuilderInterface;
+use Digitick\Sepa\Util\StringHelper;
 
-class GroupHeader extends \Digitick\Sepa\GroupHeader
+class GroupHeader
 {
+
+    /**
+     * Whether this is a test Transaction
+     *
+     * @var boolean
+     */
+    protected $isTest;
+
+    /**
+     * @var string Unambiguously identify the message.
+     */
+    protected $messageIdentification;
+
+    /**
+     * The initiating Party for this payment
+     *
+     * @var string
+     */
+    protected $initiatingPartyId;
+
+    /**
+     * @var int
+     */
+    protected $numberOfTransactions = 0;
+
+    /**
+     * @var int
+     */
+    protected $controlSumCents = 0;
 
     /**
      * @var string
      */
-    protected $privateIdentification;
+    protected $initiatingPartyName;
+
+    /**
+     * @var \DateTime
+     */
+    protected $creationDateTime;
+
+    /**
+     * @var string
+     */
+    protected $groupReversal;
+
+    /**
+     * @param $messageIdentification
+     * @param $isTest
+     * @param $initiatingPartyName
+     */
+    function __construct($messageIdentification, $initiatingPartyName, $isTest = false)
+    {
+        $this->messageIdentification = $messageIdentification;
+        $this->isTest = $isTest;
+        $this->initiatingPartyName = StringHelper::sanitizeString($initiatingPartyName);
+        $this->creationDateTime = new \DateTime();
+    }
+
+    public function accept(DomBuilderInterface $domBuilder)
+    {
+        $domBuilder->visitGroupHeader($this);
+    }
+
+    /**
+     * @param int $controlSumCents
+     */
+    public function setControlSumCents($controlSumCents)
+    {
+        $this->controlSumCents = $controlSumCents;
+    }
+
+    /**
+     * @return int
+     */
+    public function getControlSumCents()
+    {
+        return $this->controlSumCents;
+    }
+
+    /**
+     * @param string $initiatingPartyId
+     */
+    public function setInitiatingPartyId($initiatingPartyId)
+    {
+        $this->initiatingPartyId = $initiatingPartyId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getInitiatingPartyId()
+    {
+        return $this->initiatingPartyId;
+    }
+
+    /**
+     * @param string $initiatingPartyName
+     */
+    public function setInitiatingPartyName($initiatingPartyName)
+    {
+        $this->initiatingPartyName = StringHelper::sanitizeString($initiatingPartyName);
+    }
+
+    /**
+     * @return string
+     */
+    public function getInitiatingPartyName()
+    {
+        return $this->initiatingPartyName;
+    }
+
+    /**
+     * @param boolean $isTest
+     */
+    public function setIsTest($isTest)
+    {
+        $this->isTest = $isTest;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getIsTest()
+    {
+        return $this->isTest;
+    }
+
+    /**
+     * @param string $messageIdentification
+     */
+    public function setMessageIdentification($messageIdentification)
+    {
+        $this->messageIdentification = $messageIdentification;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessageIdentification()
+    {
+        return $this->messageIdentification;
+    }
+
+    /**
+     * @param int $numberOfTransactions
+     */
+    public function setNumberOfTransactions($numberOfTransactions)
+    {
+        $this->numberOfTransactions = $numberOfTransactions;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNumberOfTransactions()
+    {
+        return $this->numberOfTransactions;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreationDateTime()
+    {
+        return $this->creationDateTime;
+    }
 
     /**
      * @return \DateTime
@@ -41,7 +203,7 @@ class GroupHeader extends \Digitick\Sepa\GroupHeader
     }
 
     /**
-     * @param bool $groupReversal
+     * @param string $groupReversal
      */
     public function setGroupReversal($groupReversal)
     {
@@ -49,38 +211,10 @@ class GroupHeader extends \Digitick\Sepa\GroupHeader
     }
 
     /**
-     * @return bool
-     */
-    public function isGroupReversal()
-    {
-        if (!isset($this->groupReversal)) {
-            $this->groupReversal = false;
-        }
-
-        return $this->groupReversal;
-    }
-
-    /**
-     * @param DomBuilderInterface $domBuilder
-     */
-    public function accept(DomBuilderInterface $domBuilder)
-    {
-        $domBuilder->visitGroupHeader($this);
-    }
-
-    /**
-     * @param string $privateIdentification
-     */
-    public function setPrivateIdentification($privateIdentification)
-    {
-        $this->privateIdentification = $privateIdentification;
-    }
-
-    /**
      * @return string
      */
-    public function getPrivateIdentification()
+    public function getGroupReversal()
     {
-        return $this->privateIdentification;
+        return $this->groupReversal;
     }
 }

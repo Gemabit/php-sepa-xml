@@ -121,11 +121,6 @@ abstract class BaseTransactionInformation implements TransactionInformationInter
      */
     protected $ultimateCreditorName;
 
-    public function __constuct()
-    {
-        //Do something
-    }
-
     /**
      * @param mixed $creditorAddressLine
      */

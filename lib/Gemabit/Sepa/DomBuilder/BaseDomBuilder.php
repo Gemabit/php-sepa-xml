@@ -43,12 +43,7 @@ abstract class BaseDomBuilder implements DomBuilderInterface
     /**
      * @var \DOMElement
      */
-    protected $currentTransfer = null;
-
-    /**
-     * @var \DOMELement
-     */
-    protected $currentPayment = null;
+    protected $file = null;
 
     /**
      * @var \DOMELement
@@ -113,6 +108,7 @@ abstract class BaseDomBuilder implements DomBuilderInterface
         $groupHeaderTag->appendChild($creationDateTime);
         $groupHeaderTag->appendChild($this->createElement('NbOfTxs', $groupHeader->getNumberOfTransactions()));
         $groupHeaderTag->appendChild($this->createElement('CtrlSum', $this->intToCurrency($groupHeader->getControlSumCents())));
+        $groupHeaderTag->appendChild($this->createElement('GrpRvsl', $groupHeader->getGroupReversal()));
         $initiatingParty = $this->createElement('InitgPty');
         $initiatingPartyName =  $this->createElement('Nm', $groupHeader->getInitiatingPartyName());
         $initiatingParty->appendChild($initiatingPartyName);
@@ -129,7 +125,7 @@ abstract class BaseDomBuilder implements DomBuilderInterface
             $initiatingParty->appendChild($parent_id);
         }
         $groupHeaderTag->appendChild($initiatingParty);
-        $this->currentTransfer->appendChild($groupHeaderTag);
+        $this->file->appendChild($groupHeaderTag);
     }
 
 

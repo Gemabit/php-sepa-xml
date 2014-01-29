@@ -28,6 +28,8 @@ use Gemabit\Sepa\TransactionInformation\PaymentTypeInformation\BasePaymentTypeIn
 class DirectDebitReversalTransactionInformation extends BaseTransactionInformation
 {
 
+    protected $paymentTypeInformation;
+    
     protected $originalInstructedAmount;
 
     protected $reversalReasonInformationCode;
@@ -42,8 +44,6 @@ class DirectDebitReversalTransactionInformation extends BaseTransactionInformati
 
     public function __construct()
     {
-        parent::__construct();
-
         $this->dateOfSignature = new \Datetime();
     }
     /**
@@ -51,7 +51,7 @@ class DirectDebitReversalTransactionInformation extends BaseTransactionInformati
      */
     public function getPaymentTypeInformation()
     {
-        // TODO: Implement getPaymentTypeInformation() method.
+        return $this->paymentTypeInformation;
     }
 
     /**
@@ -59,7 +59,7 @@ class DirectDebitReversalTransactionInformation extends BaseTransactionInformati
      */
     public function setPaymentTypeInformation(BasePaymentTypeInformation $paymentTypeInformation)
     {
-        // TODO: Implement setPaymentTypeInformation() method.
+        $this->paymentTypeInformation = $paymentTypeInformation;
     }
 
     /**
@@ -75,7 +75,7 @@ class DirectDebitReversalTransactionInformation extends BaseTransactionInformati
      */
     public function getOriginalInstructedAmount()
     {
-        return $originalInstructedAmount;
+        return $this->originalInstructedAmount;
     }
 
     /**
@@ -123,7 +123,7 @@ class DirectDebitReversalTransactionInformation extends BaseTransactionInformati
      */
     public function getCreditorSchemeIdentification()
     {
-        return $creditorSchemeIdentification;
+        return $this->creditorSchemeIdentification;
     }
 
     /**
@@ -139,7 +139,7 @@ class DirectDebitReversalTransactionInformation extends BaseTransactionInformati
      */
     public function getMandateIdentification()
     {
-        return $mandateIdentification;
+        return $this->mandateIdentification;
     }
 
     /**
@@ -155,6 +155,6 @@ class DirectDebitReversalTransactionInformation extends BaseTransactionInformati
      */
     public function getDateOfSignature()
     {
-        return $dateOfSignature;
+        return $this->dateOfSignature;
     }
 }

@@ -52,7 +52,7 @@ abstract class BaseReversalFile implements ReversalFileInterface
     public function accept(DomBuilderInterface $domBuilder)
     {
         $this->validate();
-        $domBuilder->visitTransferFile($this);
+        $domBuilder->visitFile($this);
         $this->groupHeader->accept($domBuilder);
     }
 }
