@@ -25,7 +25,7 @@ namespace Gemabit\Sepa\TransferFile\Factory;
 use Gemabit\Sepa\GroupHeader;
 use Gemabit\Sepa\TransferFile\DirectDebitReversalTransferFile;
 use Gemabit\Sepa\TransferFile\Facade\DirectDebitReversalFacade;
-use Gemabit\Sepa\DomBuilder\DirectDebitReversalBuilder;
+use Gemabit\Sepa\DomBuilder\DirectDebitReversalDomBuilder;
 
 class TransferFileFacadeFactory extends \Digitick\Sepa\TransferFile\Factory\TransferFileFacadeFactory
 {

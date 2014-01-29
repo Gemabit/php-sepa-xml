@@ -22,36 +22,18 @@
 
 namespace Gemabit\Sepa\TransferFile;
 
+use Gemabit\Sepa\OriginalGroupInformation;
+use Gemabit\Sepa\OriginalPaymentInformation;
 
-use Digitick\Sepa\DomBuilder\DomBuilderInterface;
-use Digitick\Sepa\GroupHeader;
 
-class DirectDebitReversalTransferFile implements \Digitick\Sepa\TransferFile\TransferFileInterface{
-
-    public function __construct(GroupHeader $groupHeader)
-    {
-        // TODO: Implement __construct() method.
-    }
+class DirectDebitReversalTransferFile extends BaseReversalTransferFile
+{
+    /**
+     * @var OriginalGroupInformation $originalGroupInformation
+     */
+    protected $originalGroupInformation;
 
     /**
-     * @return GroupHeader
+     *
      */
-    public function getGroupHeader()
-    {
-        // TODO: Implement getGroupHeader() method.
-    }
-
-    /**
-     * Validate the transferfile
-     * @return mixed
-     */
-    public function validate()
-    {
-        // TODO: Implement validate() method.
-    }
-
-    public function accept(DomBuilderInterface $domBuilder)
-    {
-        // TODO: Implement accept() method.
-    }
 }

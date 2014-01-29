@@ -65,7 +65,7 @@ class DirectDebitReversalTransactionInformation extends BaseTransactionInformati
     /**
      * @param string $originalInstructedAmount
      */
-    public function setPaymentTypeInformation($originalInstructedAmount)
+    public function setOriginalInstructedAmount($originalInstructedAmount)
     {
         $this->originalInstructedAmount = $originalInstructedAmount;
     }
@@ -91,7 +91,7 @@ class DirectDebitReversalTransactionInformation extends BaseTransactionInformati
      */
     public function getReversalReasonInformationCode()
     {
-        return $reversalReasonInformationCode;
+        return $this->reversalReasonInformationCode;
     }
 
     /**
@@ -107,11 +107,11 @@ class DirectDebitReversalTransactionInformation extends BaseTransactionInformati
      */
     public function getRequestedCollectionDate()
     {
-        return $requestedCollectionDate;
+        return $this->requestedCollectionDate;
     }
 
     /**
-     * @param strig $creditorSchemeIdentification
+     * @param string $creditorSchemeIdentification
      */
     public function setCreditorSchemeIdentification($creditorSchemeIdentification)
     {
@@ -127,7 +127,7 @@ class DirectDebitReversalTransactionInformation extends BaseTransactionInformati
     }
 
     /**
-     * @param strig $mandateIdentification
+     * @param string $mandateIdentification
      */
     public function setMandateIdentification($mandateIdentification)
     {
